@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio AWA — Examen Cap. 1 y 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/vbscript.min.js"></script>
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1c1b19; --muted:#6b6862; --line:#e4e1d9;
+  --u1:#2457d6; --u1-soft:#e8eefc; --u2:#d9531e; --u2-soft:#fdeee6;
+  --ai:#7c3aed; --ai-soft:#f1eafe;
+  --exam:#b45309; --exam-bg:#fff7e0; --exam-line:#f2c14e;
+  --ok:#15803d; --ok-bg:#e7f6ec; --bad:#b91c1c; --bad-bg:#fdecec;
+  --code-bg:#1e1e24; --code-ink:#e6e6e6;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+html,body{margin:0}
+button,input,select,textarea{color:var(--ink)}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:15.5px}
+code,pre,.mono{font-family:'JetBrains Mono',monospace}
+a{color:inherit}
+/* layout */
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+nav.side{position:sticky;top:0;height:100vh;overflow:auto;background:#1c1b19;color:#eee;padding:22px 16px 40px}
+.brand{font-weight:800;font-size:18px;letter-spacing:-.02em;margin:0 6px 4px}
+.brand small{display:block;font-weight:500;font-size:12px;color:#a9a59c;letter-spacing:0}
+.progress-wrap{margin:16px 6px 18px}
+.progress-label{font-size:12px;color:#a9a59c;display:flex;justify-content:space-between}
+.bar{height:7px;background:#3a3833;border-radius:9px;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f2c14e,#d9531e);transition:width .4s}
+.navgroup{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:#8c887f;margin:18px 8px 6px}
+nav.side a{display:flex;align-items:center;gap:10px;text-decoration:none;padding:8px 10px;border-radius:9px;font-size:14px;color:#ddd}
+nav.side a:hover{background:#2b2a26}
+nav.side a.active{background:#f6f5f1;color:#1c1b19;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.d-u1{background:var(--u1)} .d-u2{background:var(--u2)} .d-ai{background:var(--ai)} .d-x{background:#f2c14e}
+.tick{margin-left:auto;font-size:12px;color:#7ecf95;display:none}
+a.done .tick{display:inline}
+main{padding:34px 44px 90px;max-width:980px;width:100%}
+.view{display:none;animation:fade .25s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* headings */
+.kicker{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:5px 10px;border-radius:99px}
+.k-u1{background:var(--u1-soft);color:var(--u1)} .k-u2{background:var(--u2-soft);color:var(--u2)} .k-ai{background:var(--ai-soft);color:var(--ai)} .k-x{background:var(--exam-bg);color:var(--exam)}
+h1{font-size:34px;line-height:1.15;letter-spacing:-.03em;margin:12px 0 8px}
+h2{font-size:21px;letter-spacing:-.02em;margin:34px 0 12px}
+h3{font-size:16px;margin:20px 0 8px}
+.lead{font-size:17px;color:#3d3b37;max-width:720px}
+.meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:10px}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.idea{border-left:5px solid var(--ink);background:#fff}
+.idea b.t{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.idea p{margin:0;font-size:16.5px;font-weight:500}
+.exam{background:var(--exam-bg);border:1.5px solid var(--exam-line);border-radius:var(--r);padding:16px 20px;margin:22px 0}
+.exam h4{margin:0 0 8px;color:var(--exam);font-size:14px;text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:8px}
+.exam ul{margin:0;padding-left:20px}
+.exam li{margin:4px 0}
+.warn{background:#f4f2ee;border-radius:10px;padding:10px 14px;font-size:14px;color:#4a4740;margin:10px 0}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;background:#efede7;margin:2px 2px}
+mark{background:#ffe69a;padding:0 3px;border-radius:3px}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+th{background:#f0eee8;text-align:left;font-weight:700;padding:9px 12px;font-size:13px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+td code{font-size:12.5px;background:#f3f1ec;padding:1px 5px;border-radius:4px}
+p code, li code{font-size:13px;background:#efede7;padding:1px 5px;border-radius:4px}
+/* code blocks */
+.codebox{margin:14px 0;border-radius:12px;overflow:hidden;background:var(--code-bg);position:relative}
+.codehead{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#2a2a33;color:#bbb;font-size:12px}
+.codehead span{font-family:'JetBrains Mono',monospace}
+.codehead button{background:#3b3b46;color:#eee;border:0;border-radius:7px;padding:4px 10px;font:inherit;font-size:12px;cursor:pointer;margin-left:6px}
+.codehead button:hover{background:#4a4a58}
+.codebox pre{margin:0;padding:14px 16px;overflow:auto;font-size:13px;line-height:1.55;color:var(--code-ink);transition:filter .25s}
+.codebox.hidden pre{filter:blur(7px);user-select:none}
+.codebox.hidden::after{content:'Modo práctica: escríbelo de memoria y luego pulsa “Mostrar”';position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);background:#fff;color:#222;padding:8px 14px;border-radius:9px;font-size:13px;font-weight:600;white-space:nowrap}
+.notes{list-style:none;padding:0;margin:8px 0 0}
+.notes li{position:relative;padding:6px 0 6px 30px;font-size:14px;border-top:1px dashed var(--line)}
+.notes li::before{content:attr(data-n);position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+/* hljs theme */
+.hljs-keyword,.hljs-built_in,.hljs-selector-tag{color:#ff8fa3}
+.hljs-string,.hljs-template-tag{color:#a5e075}
+.hljs-comment{color:#8a8a99;font-style:italic}
+.hljs-number,.hljs-literal{color:#f7b267}
+.hljs-title,.hljs-function .hljs-title,.hljs-title.function_{color:#7cc4ff}
+.hljs-attr,.hljs-attribute,.hljs-property{color:#ffd479}
+.hljs-tag,.hljs-name{color:#7cc4ff}
+.hljs-meta{color:#c8a2ff}
+.hljs-variable,.hljs-params{color:#e6e6e6}
+/* diagrams */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0}
+.flow .node{flex:1;min-width:130px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.flow .node b{display:block;font-size:14px}
+.flow .node small{color:var(--muted);font-size:12.5px}
+.flow .arr{display:grid;place-items:center;padding:0 6px;color:var(--muted);font-size:20px}
+.stack{max-width:520px;margin:16px auto}
+.stack .layer{border-radius:12px;padding:12px 16px;text-align:center;border:1.5px solid var(--line);background:#fff}
+.stack .layer b{display:block}
+.stack .layer small{color:var(--muted)}
+.stack .down{text-align:center;color:var(--muted);line-height:1;padding:3px 0}
+.stack .mono-box{border:2.5px solid var(--u1);border-radius:16px;padding:14px;background:var(--u1-soft);position:relative}
+.stack .mono-box .lbl{font-size:12px;font-weight:700;color:var(--u1);display:flex;justify-content:space-between;margin-bottom:8px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vs .side-a,.vs .side-b{border-radius:14px;padding:16px;border:1.5px solid}
+.side-a{border-color:var(--u1);background:var(--u1-soft)}
+.side-b{border-color:var(--u2);background:var(--u2-soft)}
+.vs h4{margin:0 0 6px}
+.vs ul{margin:0;padding-left:18px;font-size:14px}
+.timeline{display:flex;overflow:auto;gap:0;padding:10px 0 4px;margin:10px 0}
+.tl{flex:1;min-width:108px;position:relative;padding-top:26px;text-align:center;font-size:12.5px}
+.tl::before{content:'';position:absolute;top:10px;left:0;right:0;height:3px;background:var(--line)}
+.tl::after{content:'';position:absolute;top:4px;left:50%;width:15px;height:15px;margin-left:-7px;border-radius:50%;background:#fff;border:3px solid var(--u1)}
+.tl.hot::after{background:var(--u2);border-color:var(--u2)}
+.tl b{display:block;font-size:13.5px}
+.tl span{color:var(--muted)}
+/* polling lanes */
+.lanes{display:grid;gap:12px;margin:14px 0}
+.lane{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.lane .lt{font-weight:700;font-size:14px;display:flex;justify-content:space-between}
+.lane .lt small{color:var(--muted);font-weight:500}
+.track{position:relative;height:46px;margin-top:8px;background:repeating-linear-gradient(90deg,#faf9f6 0 10%,#f3f1ec 10% 20%);border-radius:8px}
+.ev{position:absolute;top:8px;height:30px;border-radius:7px;font-size:11px;display:grid;place-items:center;color:#fff;font-weight:600;padding:0 4px;white-space:nowrap}
+.ev.empty{background:#b8b4aa}
+.ev.data{background:var(--ok)}
+.ev.hold{background:repeating-linear-gradient(45deg,#d9531e 0 8px,#e7774a 8px 16px)}
+.ev.ws{background:var(--u1)}
+/* jwt */
+.jwt{font-family:'JetBrains Mono',monospace;font-size:13px;word-break:break-all;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;line-height:1.7}
+.j1{color:#d6336c}.j2{color:#7c3aed}.j3{color:#0891b2}
+.jwtparts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.jwtparts>div{border-radius:12px;padding:12px;font-size:13.5px;background:#fff;border:2px solid}
+.jwtparts h5{margin:0 0 6px;font-size:14px}
+.jwtparts pre{margin:6px 0 0;font-size:12px;background:#f6f5f1;padding:8px;border-radius:8px;white-space:pre-wrap}
+/* plan */
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.method .m{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.method .m .ic{font-size:22px;font-weight:800;color:var(--u2)}
+.method .m b{display:block;margin:4px 0 2px;font-size:14.5px}
+.method .m p{margin:0;font-size:13px;color:var(--muted)}
+.sched{position:relative;margin:18px 0}
+.blk{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;margin:8px 0}
+.blk .time{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding-top:14px;text-align:right;color:var(--muted)}
+.blk .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:.15s}
+.blk .box:hover{border-color:#cfcabd}
+.blk.brk .box{background:transparent;border-style:dashed;cursor:default}
+.blk .box input{margin-top:4px;width:18px;height:18px;accent-color:var(--ok);flex:none}
+.blk .box .tt{font-weight:700}
+.blk .box .ds{font-size:13.5px;color:#4a4740}
+.blk .box .tags{margin-top:6px}
+.blk.checked .box{background:var(--ok-bg);border-color:#9fd5b0}
+.blk.checked .tt{text-decoration:line-through;color:var(--muted)}
+.prio{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em}
+.p-a{background:#fde2e2;color:#b91c1c} .p-m{background:#fff1cc;color:#a16207} .p-b{background:#e7f0e9;color:#3f6b4b}
+.btnlink{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;color:var(--u1);text-decoration:none}
+/* flashcards */
+.fc-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;margin:18px 0}
+.fc{width:min(520px,100%);height:250px;perspective:1000px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center}
+.fc-front{background:#1c1b19;color:#fff}
+.fc-front .s{font-size:44px;font-weight:800;letter-spacing:-.02em}
+.fc-front small{color:#a9a59c;margin-top:8px}
+.fc-back{background:#fff;border:2px solid #1c1b19;transform:rotateY(180deg)}
+.fc-back .m{font-size:21px;font-weight:700}
+.fc-back .c{color:var(--muted);margin-top:8px;font-size:14px}
+.fc-ctrl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{border:0;border-radius:11px;padding:10px 16px;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+.b-ok{background:var(--ok);color:#fff} .b-no{background:var(--bad);color:#fff} .b-n{background:#e9e6de;color:var(--ink)}
+.chip{color:var(--ink)} .chip.on{color:#fff}
+.d-lab{background:#0f9d8a} .k-lab{background:#e0f5f1;color:#0b7a6b}
+.prof{border:2px solid #e11d48;background:#fff1f3}
+.prof h4{color:#be123c}
+.qa{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.qa .qh{display:flex;gap:10px;align-items:baseline}
+.qa .qh b{font-size:16px}
+.qa .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:#ffe4e8;color:#be123c;white-space:nowrap}
+.qa .tag.d{background:#efede7;color:#6b6862}
+.qa p{margin:8px 0 0}
+.flags{display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;margin:12px 0}
+.flags>div{padding:8px 12px;border-top:1px solid var(--line);font-size:14px}
+.flags>div:nth-child(-n+2){border-top:0}
+.flags .f{font-family:'JetBrains Mono',monospace;font-weight:600;background:#f6f5f1;white-space:nowrap}
+.cmdline{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--code-bg);color:#e6e6e6;border-radius:12px;padding:14px 16px;line-height:2;overflow:auto}
+.cmdline span{padding:2px 4px;border-radius:4px}
+.c1{background:#3b2f52}.c2{background:#2f4b3b}.c3{background:#4b3a2a}.c4{background:#2a3d52}.c5{background:#523040}.c6{background:#3d4a2a}
+.filelist a{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--line);text-decoration:none;font-size:14px}
+.filelist a:first-child{border-top:0}
+.filelist a:hover{background:#faf9f6}
+.filelist small{color:var(--muted);white-space:nowrap}
+.fc-stats{font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 12px;font-size:13px;cursor:pointer;font-weight:600}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* quiz */
+.qtop{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.score{font-weight:800;font-size:18px}
+.q{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.q .qn{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;justify-content:space-between}
+.q .qt{font-weight:600;margin:4px 0 10px}
+.opt{display:block;width:100%;text-align:left;color:var(--ink);background:#faf9f6;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;margin:6px 0;font:inherit;font-size:14.5px;cursor:pointer}
+.opt:hover{border-color:#bdb7a8}
+.opt.right{background:var(--ok-bg);border-color:var(--ok);font-weight:600}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.q.answered .opt{cursor:default}
+.expl{display:none;margin-top:8px;font-size:14px;padding:10px 12px;border-radius:10px;background:#f4f2ee}
+.q.answered .expl{display:block}
+.q.hide{display:none}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  nav.side{position:static;height:auto;display:flex;flex-wrap:wrap;gap:4px;padding:12px}
+  .navgroup,.progress-wrap{display:none}
+  .brand{width:100%}
+  nav.side a{font-size:13px;padding:6px 9px}
+  main{padding:22px 16px 70px}
+  .grid2,.grid3,.vs,.method,.jwtparts{grid-template-columns:1fr}
+  h1{font-size:27px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="side" id="nav">
+  <div class="brand">Aplicaciones Web Avanzadas<small>Examen Cap. 1 y 2 · ISWD813</small></div>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Progreso de hoy</span><span id="pct">0%</span></div>
+    <div class="bar"><i id="pbar"></i></div>
+  </div>
+  <div class="navgroup">Empieza aquí</div>
+  <a href="#plan" data-v="plan"><span class="dot d-x"></span>Plan de hoy</a>
+  <a href="#profe" data-v="profe"><span class="dot" style="background:#e11d48"></span>Preguntas del profe<span class="tick">✓</span></a>
+  <a href="#practica" data-v="practica"><span class="dot d-x"></span>Parte práctica<span class="tick">✓</span></a>
+  <div class="navgroup">Unidad 1.2 · Frameworks</div>
+  <a href="#tema-1" data-v="tema-1"><span class="dot d-u1"></span>1 · Servidores e IIS<span class="tick">✓</span></a>
+  <a href="#tema-2" data-v="tema-2"><span class="dot d-u1"></span>2 · .NET y Visual Studio<span class="tick">✓</span></a>
+  <a href="#tema-3" data-v="tema-3"><span class="dot d-ai"></span>3 · Agentes IA<span class="tick">✓</span></a>
+  <a href="#tema-4" data-v="tema-4"><span class="dot d-u1"></span>4 · ASP clásico<span class="tick">✓</span></a>
+  <a href="#tema-5" data-v="tema-5"><span class="dot d-u1"></span>5 · Apps tradicionales y modernas<span class="tick">✓</span></a>
+  <a href="#tema-6" data-v="tema-6"><span class="dot d-u1"></span>6 · Monolíticos y n-capas<span class="tick">✓</span></a>
+  <div class="navgroup">Unidad 2.1 · WebSockets</div>
+  <a href="#tema-7" data-v="tema-7"><span class="dot d-u2"></span>7 · HTTP, AJAX y jQuery<span class="tick">✓</span></a>
+  <a href="#tema-8" data-v="tema-8"><span class="dot d-u2"></span>8 · Short y long polling<span class="tick">✓</span></a>
+  <a href="#tema-9" data-v="tema-9"><span class="dot d-u2"></span>9 · WSS, TLS y JWT<span class="tick">✓</span></a>
+  <div class="navgroup">Laboratorios</div>
+  <a href="#lab-1" data-v="lab-1"><span class="dot d-lab"></span>Lab 1 · SQL Server en Docker<span class="tick">✓</span></a>
+  <a href="#lab-2" data-v="lab-2"><span class="dot d-lab"></span>Lab 2 · PoliMusic en ASP<span class="tick">✓</span></a>
+  <a href="#lab-3" data-v="lab-3"><span class="dot d-lab"></span>Lab 3 · Monolito .NET 2.0<span class="tick">✓</span></a>
+  <a href="#lab-4" data-v="lab-4"><span class="dot d-lab"></span>Lab 4 · N-Tier .NET 4.8<span class="tick">✓</span></a>
+  <a href="#lab-5" data-v="lab-5"><span class="dot d-lab"></span>Lab 5 · Chat WebSocket<span class="tick">✓</span></a>
+  <a href="#lab-6" data-v="lab-6"><span class="dot d-lab"></span>Lab 6 · WSS + JWT<span class="tick">✓</span></a>
+  <a href="#lab-7" data-v="lab-7"><span class="dot d-lab"></span>Lab 7 · Socket.IO<span class="tick">✓</span></a>
+  <div class="navgroup">Practica</div>
+  <a href="#siglas" data-v="siglas"><span class="dot d-x"></span>Flashcards de siglas</a>
+  <a href="#quiz" data-v="quiz"><span class="dot d-x"></span>Quiz (57 preguntas)</a>
+  <a href="#abiertas" data-v="abiertas"><span class="dot d-x"></span>Preguntas abiertas</a>
+  <a href="#material" data-v="material"><span class="dot d-x"></span>Material (PDFs)</a>
+</nav>
+
+<main>
+<!-- ============ PLAN ============ -->
+<section class="view" id="v-plan">
+  <span class="kicker k-x">Martes 17 de noviembre · examen mañana</span>
+  <h1>Plan de estudio para hoy</h1>
+  <p class="lead">Unas 7 horas de estudio real, en bloques de 50 minutos con descansos. Empiezas por lo que más pesa en el examen y terminas la noche practicando, no releyendo.</p>
+
+  <h2>Cómo estudiar (los 4 métodos que más rinden)</h2>
+  <div class="method">
+    <div class="m"><div class="ic">01</div><b>Recuerdo activo</b><p>Cierra la pantalla y escribe lo que recuerdas. Sacar información de la memoria fija mucho más que releer.</p></div>
+    <div class="m"><div class="ic">02</div><b>Pomodoro 50/10</b><p>50 min de foco total, celular lejos. 10 min de descanso de verdad (caminar, agua).</p></div>
+    <div class="m"><div class="ic">03</div><b>Repaso espaciado</b><p>Repasa las siglas 3 veces hoy (tarde, noche) y una vez mañana antes del examen.</p></div>
+    <div class="m"><div class="ic">04</div><b>Técnica Feynman</b><p>Explica en voz alta, como a un compañero, por qué ASP es SSR o qué hace long polling. Donde te trabes, ahí estudias.</p></div>
+  </div>
+  <div class="warn"><b>Cómo usar cada tema:</b> lee la <b>idea clave</b> → mira el diagrama → lee las tablas → activa <b>“Modo práctica”</b> en los códigos y escríbelos en papel → termina con el recuadro amarillo <b>Probable en examen</b>. Marca el bloque como hecho aquí abajo.</div>
+
+  <h2>Horario</h2>
+  <p style="font-size:14px;color:var(--muted);margin-top:-4px">Marca cada bloque al terminarlo; tu avance se guarda en este navegador. Si empiezas más tarde, corre todo el horario, pero no te saltes la noche de práctica.</p>
+  <div class="sched" id="sched"></div>
+
+  <h2>Mañana antes del examen (30 min)</h2>
+  <div class="card">
+    <ol style="margin:0;padding-left:20px">
+      <li>10 min: flashcards de siglas, solo las marcadas “Repasar”.</li>
+      <li>10 min: rehacer en el quiz las preguntas que fallaste (botón “Solo falladas”).</li>
+      <li>10 min: leer los recuadros amarillos de los temas 4, 6, 8 y 9.</li>
+    </ol>
+    <p style="margin:10px 0 0;font-size:14px;color:var(--muted)">No estudies temas nuevos en la mañana. Duerme 7–8 horas: la memoria se consolida mientras duermes.</p>
+  </div>
+</section>
+
+<!-- ============ TEMA 1 ============ -->
+<section class="view" id="v-tema-1">
+  <span class="kicker k-u1">Unidad 1.2 · Tema 1</span>
+  <h1>Servidores web e IIS</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Un servidor atiende peticiones de clientes por la red. IIS es el servidor web de Microsoft para Windows y .NET, y además trae FTP, SMTP y NNTP.</p></div>
+
+  <h2>El ciclo de una petición</h2>
+  <div class="flow">
+    <div class="node"><b>1 · Request</b><small>El navegador pide un archivo por IP o dominio</small></div><div class="arr">→</div>
+    <div class="node"><b>2 · Procesamiento</b><small>El servidor busca el archivo o genera la respuesta</small></div><div class="arr">→</div>
+    <div class="node"><b>3 · Response</b><small><b style="display:inline;color:var(--ok)">200 OK</b> o <b style="display:inline;color:var(--bad)">404 Not Found</b></small></div>
+  </div>
+
+  <h2>Tipos de servidores</h2>
+  <table>
+    <tr><th>Tipo</th><th>Qué hace</th></tr>
+    <tr><td><b>Web</b></td><td>Entrega HTML, CSS y JS</td></tr>
+    <tr><td><b>Correo</b></td><td><mark>SMTP = salida</mark> · <mark>IMAP / POP3 = entrada</mark></td></tr>
+    <tr><td><b>Base de datos</b></td><td>Guarda, recupera y modifica datos estructurados</td></tr>
+    <tr><td><b>Archivos</b></td><td>Compartir documentos en red</td></tr>
+    <tr><td><b>DNS</b></td><td>Traduce dominios (google.com) a direcciones IP</td></tr>
+  </table>
+
+  <h2>Estático vs dinámico</h2>
+  <div class="vs">
+    <div class="side-a"><h4>Servidor estático</h4><ul><li>Envía los archivos tal como están</li><li>Rápido</li><li>Ej.: blog simple, landing page</li></ul></div>
+    <div class="side-b"><h4>Servidor dinámico</h4><ul><li><b>Estático + servidor de aplicaciones + base de datos</b></li><li>“Construye” la página antes de enviarla</li><li>Ej.: perfil de Facebook, tienda en línea</li></ul></div>
+  </div>
+
+  <h2>Software de servidor web</h2>
+  <div class="grid3">
+    <div class="card"><b>Nginx</b><br><span style="font-size:14px">Alto rendimiento, poca memoria. Muy usado como <b>proxy inverso</b>.</span></div>
+    <div class="card"><b>Apache HTTP Server</b><br><span style="font-size:14px">El veterano. Flexible por su <b>sistema de módulos</b>.</span></div>
+    <div class="card"><b>Microsoft IIS</b><br><span style="font-size:14px">Estándar para <b>Windows y .NET</b>.</span></div>
+  </div>
+
+  <h2>IIS (Internet Information Services)</h2>
+  <ul>
+    <li>Servicios incluidos: <mark><b>FTP, SMTP, NNTP y HTTP/HTTPS</b></mark>.</li>
+    <li>Nació en el Option Pack de Windows NT. En Windows 98 se llamaba <b>PWS (Personal Web Server)</b>.</li>
+    <li>Funciona con <b>módulos</b>: ASP, ASP.NET y también PHP o Perl mediante <b>CGI</b>.</li>
+    <li>Al habilitar IIS se habilita ASP.</li>
+  </ul>
+  <div class="timeline">
+    <div class="tl"><b>1.0</b><span>NT 3.51</span></div>
+    <div class="tl"><b>4.0</b><span>NT 4 Option Pack</span></div>
+    <div class="tl hot"><b>5.0</b><span>Win 2000 · ASP 3.0</span></div>
+    <div class="tl"><b>6.0</b><span>Server 2003</span></div>
+    <div class="tl"><b>7.0 / 7.5</b><span>Vista, 2008 / Win 7</span></div>
+    <div class="tl"><b>8.0 / 8.5</b><span>Win 8 / 8.1</span></div>
+    <div class="tl hot"><b>10</b><span>Win 10/11, Server 2016–2025</span></div>
+  </div>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>Servicios de IIS: FTP, SMTP, NNTP, HTTP/HTTPS.</li>
+    <li>SMTP sale; IMAP y POP3 entran.</li>
+    <li>200 = OK · 404 = Not Found.</li>
+    <li>Dinámico = estático + servidor de aplicaciones + base de datos.</li>
+    <li>Nginx → proxy inverso · Apache → módulos · IIS → Windows/.NET.</li>
+    <li>IIS 5.0 (Windows 2000) trajo ASP 3.0; la versión actual es IIS 10.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 2 ============ -->
+<section class="view" id="v-tema-2">
+  <span class="kicker k-u1">Unidad 1.2 · Tema 2</span>
+  <h1>.NET Framework y Visual Studio</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Un framework es una cocina ya equipada: no fabricas cada ingrediente. .NET Framework (hasta 4.8.1) es solo para Windows; .NET (antes .NET Core) es multiplataforma y va por la versión 10.</p></div>
+  <div class="warn">Analogía de clase: Andy George (2015) tardó <b>6 meses y ~$1.500</b> en hacer un sándwich desde cero. Programar sin framework es eso.</div>
+
+  <h2>Línea de tiempo</h2>
+  <div class="timeline">
+    <div class="tl"><b>1996</b><span>ASP clásico</span></div>
+    <div class="tl"><b>2002</b><span>.NET Framework 1.0 · C# 1.0</span></div>
+    <div class="tl"><b>2006</b><span>ASP.NET 2.0</span></div>
+    <div class="tl"><b>2016</b><span>.NET Core 1.0</span></div>
+    <div class="tl hot"><b>2022</b><span>Framework 4.8.1 (la última)</span></div>
+    <div class="tl"><b>2023</b><span>.NET 8 LTS</span></div>
+    <div class="tl hot"><b>2026</b><span>.NET 10 LTS · C# 14 · VS 2026</span></div>
+  </div>
+
+  <h2>Visual Studio, C# y .NET</h2>
+  <table>
+    <tr><th>Visual Studio</th><th>C#</th><th>Framework</th></tr>
+    <tr><td>VS 6.0 (1998) / <b>Visual InterDev</b></td><td>—</td><td>ASP clásico</td></tr>
+    <tr><td>VS .NET (2002)</td><td>1.0</td><td>.NET Framework 1.0</td></tr>
+    <tr><td>VS .NET 2003</td><td>1.1</td><td>1.1</td></tr>
+    <tr><td>VS 2005</td><td>2.0</td><td>2.0</td></tr>
+    <tr><td>VS 2008</td><td>3.0</td><td>3.0 / 3.5</td></tr>
+    <tr><td>VS 2010</td><td>4.0</td><td>4.0</td></tr>
+    <tr><td>VS 2012 / 2013</td><td>5.0</td><td>4.5 / 4.5.1</td></tr>
+    <tr><td>VS 2015</td><td>6.0</td><td>4.6</td></tr>
+    <tr><td>VS 2017</td><td>7.0</td><td>.NET Core 2.0 / Framework 4.7</td></tr>
+    <tr><td>VS 2019</td><td>8.0</td><td>.NET 5.0 / Framework 4.8</td></tr>
+    <tr><td>VS 2022</td><td>10</td><td>.NET 7, 8, 9 / Framework <b>4.8.1</b></td></tr>
+    <tr><td><b>VS 2026</b></td><td><b>14</b></td><td><b>.NET 10</b></td></tr>
+  </table>
+
+  <h2>.NET Framework vs .NET</h2>
+  <div class="vs">
+    <div class="side-a"><h4>.NET Framework (1.0 → 4.8.1)</h4><ul><li><b>Solo Windows</b></li><li>WebForms, ASP.NET MVC, WebServices .asmx</li><li>Lo usan los laboratorios (2.0 y 4.8)</li></ul></div>
+    <div class="side-b"><h4>.NET Core / .NET (1.0 → 10)</h4><ul><li><b>Multiplataforma</b></li><li>LTS: Core 2.1, 3.1, .NET 6, 8, <b>10</b></li><li>Regla: desde .NET 6, <b>las pares son LTS</b></li></ul></div>
+  </div>
+
+  <h2>Otros datos</h2>
+  <ul>
+    <li>Visual Studio: <b>18 productos en 35 años</b>; de ~857 KB (VB 1.0, 1991) a 20–50 GB.</li>
+    <li>Ediciones: <b>Community (gratis)</b>, Professional, Enterprise. Alternativa ligera: VS Code.</li>
+    <li>C# 14 trae <b>extension properties</b> y <b>asignación condicional de nulo</b>.</li>
+    <li>Recursos: Microsoft Learn, <code>portal.azure.com</code> (nube), <code>dev.azure.com</code> (Azure DevOps).</li>
+  </ul>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>Última versión de .NET Framework: <b>4.8.1</b>. La de .NET: <b>10 LTS</b>, con C# 14 y VS 2026.</li>
+    <li>LTS = Long-Term Support.</li>
+    <li>Framework = solo Windows; .NET = multiplataforma.</li>
+    <li>Edición gratuita: Community. IDE de ASP clásico: Visual InterDev.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 3 ============ -->
+<section class="view" id="v-tema-3">
+  <span class="kicker k-ai">Unidad 1.2 · Tema 3</span>
+  <h1>Agentes IA</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Programar hoy incluye trabajar con modelos de IA: hay que conocer sus conceptos (tokens, contexto, MoE), cómo se comparan (benchmarks) y cómo usarlos sin atarse a un proveedor (OpenRouter).</p></div>
+
+  <h2>Conceptos (la diapositiva solo los nombra)</h2>
+  <div class="grid2">
+    <div class="card"><b>SOTA</b> · State of the Art<br><span style="font-size:14px">Lo más avanzado del momento.</span></div>
+    <div class="card"><b>Modelo de frontera</b><br><span style="font-size:14px">Los modelos más capaces de los grandes laboratorios.</span></div>
+    <div class="card"><b>Token</b><br><span style="font-size:14px">Fragmento de texto que procesa el modelo.</span></div>
+    <div class="card"><b>Ventana de contexto</b><br><span style="font-size:14px">Máximo de tokens que el modelo considera a la vez.</span></div>
+    <div class="card"><b>Inferencia</b><br><span style="font-size:14px">Usar el modelo ya entrenado. Velocidad = tokens por segundo.</span></div>
+    <div class="card"><b>Fine-tuning</b><br><span style="font-size:14px">Reentrenar un modelo base con datos propios.</span></div>
+    <div class="card"><b>MoE</b> · Mixture of Experts<br><span style="font-size:14px">Solo algunos “expertos” se activan por token. <mark>375B A23B</mark> = 375 mil millones de parámetros totales, 23 mil millones activos.</span></div>
+    <div class="card"><b>CoT</b> · Chain of Thought<br><span style="font-size:14px">Razonar paso a paso antes de responder.</span></div>
+    <div class="card"><b>VRAM · GPU · TPU</b><br><span style="font-size:14px">Memoria de video, procesador gráfico, procesador tensorial (Google).</span></div>
+    <div class="card"><b>Open Weights ≠ Open Source</b><br><span style="font-size:14px">Open weights publica solo los pesos; open source también código y datos.</span></div>
+  </div>
+
+  <h2>Vibe coding y MicroGPT (Andrej Karpathy)</h2>
+  <div class="vs">
+    <div class="side-a" style="border-color:var(--ai);background:var(--ai-soft)"><h4>Vibe coding</h4><ul><li>Programar con <b>lenguaje natural</b> (texto o voz)</li><li>Acelera prototipos, democratiza</li><li>Riesgo: requiere <b>supervisión humana crítica</b></li></ul></div>
+    <div class="side-b" style="border-color:var(--ai);background:var(--ai-soft)"><h4>MicroGPT</h4><ul><li><b>~243 líneas</b> de Python puro, sin PyTorch/NumPy</li><li>GPT-2: tokenización, self-attention, MLP, autograd propio</li><li>Clase <b><code>Value</code></b> para backpropagation</li><li>~4.192 parámetros vs 1.600 millones de GPT-2</li></ul></div>
+  </div>
+
+  <h2>Empresas y modelos</h2>
+  <table>
+    <tr><th>Empresa</th><th>Persona</th><th>Modelo</th></tr>
+    <tr><td>Anthropic (2021)</td><td>Dario Amodei</td><td>Claude Opus 5.5</td></tr>
+    <tr><td>OpenAI (2015)</td><td>Sam Altman</td><td>ChatGPT 6</td></tr>
+    <tr><td>Google</td><td>Sundar Pichai</td><td>Gemini 4</td></tr>
+    <tr><td>x.ai</td><td>Elon Musk</td><td>Grok 4.7</td></tr>
+    <tr><td>NVIDIA</td><td>Jensen Huang</td><td>Nemotron 3 Ultra</td></tr>
+    <tr><td>Microsoft</td><td>Satya Nadella</td><td>Copilot (Phi / MAI)</td></tr>
+    <tr><td>Meta</td><td>Mark Zuckerberg</td><td>Muse Wonder</td></tr>
+    <tr><td>Thinking Machines</td><td>Mira Murati</td><td>Inkling</td></tr>
+    <tr><td>Amazon</td><td>Jeff Bezos</td><td>Nova</td></tr>
+    <tr><td>Mistral (París) · MBZUAI (Emiratos)</td><td>—</td><td>Mistral 4 · K2 Horizon</td></tr>
+    <tr><td>Alibaba · DeepSeek · MiniMax</td><td>Jack Ma · Liang Wenfeng · Junjie Yan</td><td>Qwen 3.8 · DeepSeek-4.1 · M3.1</td></tr>
+    <tr><td>Moonshot · Z.ai · Xiaomi</td><td>Yang Zhilin · Jie Tang · Fuli Luo</td><td>Kimi K3 · GLM 5.3 · MiMo-V2.6 Pro</td></tr>
+    <tr><td>StepFun · Tencent</td><td>Daxin Jiang · —</td><td>Step 5 · Hunyuan Hy4, WorkBuddy</td></tr>
+  </table>
+
+  <h2>Benchmarks</h2>
+  <div class="grid3">
+    <div class="card"><b>Razonamiento</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0"><li><b>GPQA Diamond</b>: nivel doctorado en ciencias</li><li><b>HLE</b>: límite del conocimiento humano</li><li><b>AA-Omniscience</b>: lagunas y alucinaciones</li></ul></div>
+    <div class="card"><b>Código y herramientas</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0"><li><b>SciCode</b>: problemas científicos</li><li><b>Terminal-Bench Hard</b>: uso de terminal</li><li><b>τ²-Bench Telecom</b>: capacidad agéntica</li></ul></div>
+    <div class="card"><b>Instrucciones y lógica</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0"><li><b>IFBench</b>: seguir instrucciones</li><li><b>AA-LCR</b>: contexto largo</li><li><b>GDPval-AA</b>: extracción de datos</li><li><b>CritPt</b>: hallar el error lógico</li></ul></div>
+  </div>
+  <p style="font-size:14px">Rankings: artificialanalysis.ai · arena.ai · openrouter.ai/rankings</p>
+
+  <h2>OpenRouter</h2>
+  <div class="flow">
+    <div class="node"><b>Tu app</b><small>una API, una clave, una factura</small></div><div class="arr">→</div>
+    <div class="node" style="border-color:var(--ai)"><b>OpenRouter</b><small>API gateway</small></div><div class="arr">→</div>
+    <div class="node"><b>Cientos de modelos</b><small>OpenAI, Anthropic, Google, DeepSeek…</small></div>
+  </div>
+  <ul>
+    <li>Evita el <mark><b>vendor lock-in</b></mark>: igual que la <b>arquitectura hexagonal</b> o el <b>patrón Adapter</b>. Cambiar de modelo = cambiar un texto.</li>
+    <li>Modelo según tarea: grande → arquitectura · intermedio → código · pequeño → clasificar, resumir commits, pruebas simples.</li>
+    <li><b>WorkBuddy (Tencent)</b>: agente de oficina, ejecuta en <b>sandbox</b>, pide permiso antes de tocar archivos, Pro ~$7/mes.</li>
+  </ul>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>Vibe coding: Karpathy; riesgo = falta de supervisión.</li>
+    <li>MicroGPT: 243 líneas, Python puro, clase Value.</li>
+    <li>MoE y cómo leer “375B A23B”.</li>
+    <li>Open weights ≠ open source.</li>
+    <li>Qué mide GPQA, HLE y Terminal-Bench.</li>
+    <li>OpenRouter → evita vendor lock-in.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 4 ============ -->
+<section class="view" id="v-tema-4">
+  <span class="kicker k-u1">Unidad 1.2 · Tema 4 · prioridad alta</span>
+  <h1>ASP clásico</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>ASP (Active Server Pages, 1996) ejecuta VBScript dentro de IIS y le manda al navegador solo HTML. Es SSR, solo corre en Windows y mezcla todo en un archivo .asp (código espagueti).</p></div>
+
+  <h2>Cómo funciona</h2>
+  <div class="flow">
+    <div class="node"><b>Navegador</b><small>pide <code>index.asp</code></small></div><div class="arr">→</div>
+    <div class="node"><b>IIS</b><small>ve la extensión .asp</small></div><div class="arr">→</div>
+    <div class="node" style="border-color:var(--u1)"><b>Motor ASP</b><small>ejecuta lo que está entre <code>&lt;% %&gt;</code></small></div><div class="arr">→</div>
+    <div class="node"><b>HTML simple</b><small>el navegador nunca ve el código ASP</small></div>
+  </div>
+  <p style="font-size:14px">Si se pide un <code>.html</code>, IIS lo devuelve tal cual, sin pasar por el motor ASP.</p>
+
+  <h2>Ficha técnica</h2>
+  <div class="grid3">
+    <div class="card"><b>Lenguajes</b><br><span style="font-size:14px"><b>VBScript</b> (por defecto) o JScript</span></div>
+    <div class="card"><b>Extensión</b><br><span style="font-size:14px"><b>.asp</b></span></div>
+    <div class="card"><b>Servidor</b><br><span style="font-size:14px"><b>IIS</b>, solo Windows (mod-mono existe, no se recomienda)</span></div>
+    <div class="card"><b>Base de datos</b><br><span style="font-size:14px"><b>ADO</b> (ActiveX Data Objects)</span></div>
+    <div class="card"><b>Correo</b><br><span style="font-size:14px"><b>CDONTS</b> + SMTP de IIS</span></div>
+    <div class="card"><b>Evolución</b><br><span style="font-size:14px">ASP → ASP.NET (2002) → ASP.NET Core</span></div>
+  </div>
+
+  <h2>Los 7 objetos integrados (ASP 3.0)</h2>
+  <p>Truco: <mark><b>A-A-S-S-O-R-R</b></mark></p>
+  <table>
+    <tr><th>Objeto</th><th>Para qué</th><th>Ejemplo</th></tr>
+    <tr><td><b>A</b>pplication</td><td>Variables para <b>todos</b> los usuarios</td><td><code>Application("VisitCount") = Application("VisitCount") + 1</code></td></tr>
+    <tr><td><b>A</b>SPError</td><td>Datos del último error</td><td>—</td></tr>
+    <tr><td><b>S</b>erver</td><td>Crear objetos del servidor</td><td><code>Server.CreateObject("ADODB.Connection")</code></td></tr>
+    <tr><td><b>S</b>ession</td><td>Variables de <b>un</b> usuario en todas las páginas</td><td><code>Session("username") = "EPN FIS"</code></td></tr>
+    <tr><td><b>O</b>bjectContext</td><td>Transacciones</td><td>—</td></tr>
+    <tr><td><b>R</b>esponse</td><td>Escribir hacia el navegador</td><td><code>Response.Write("Hello")</code></td></tr>
+    <tr><td><b>R</b>equest</td><td>Leer lo que envía el cliente</td><td><code>Request.QueryString("x")</code> · <code>Request.Form("x")</code></td></tr>
+  </table>
+
+  <h2>Verbos HTTP</h2>
+  <ul>
+    <li><b>Idempotencia:</b> repetir la petición da el mismo resultado sin efectos adicionales. GET, PUT y DELETE lo son; <b>POST no</b>.</li>
+    <li>En ASP solo se usan <b>GET</b> y <b>POST</b>.</li>
+  </ul>
+  <table>
+    <tr><th>Rango</th><th>Tipo</th><th>Ejemplos</th></tr>
+    <tr><td>1xx</td><td>Informativos</td><td>100 Continue, <b>101 Switching Protocols</b></td></tr>
+    <tr><td>2xx</td><td>Éxito</td><td>200 OK, 201 Created, 204 No Content</td></tr>
+    <tr><td>3xx</td><td>Redirección</td><td>301, 302, 304 Not Modified</td></tr>
+    <tr><td>4xx</td><td>Error del cliente</td><td>400, 401 Unauthorized, 403 Forbidden, 404</td></tr>
+    <tr><td>5xx</td><td>Error del servidor</td><td>500, 502 Bad Gateway, 503</td></tr>
+  </table>
+
+  <h2>Laboratorio: Hello EPN FIS</h2>
+  <div class="code" data-lang="html" data-title="index.asp" data-id="c-asp-hello"></div>
+  <ul class="notes">
+    <li data-n="1">Para verlo: se publica la carpeta <code>aspdemo</code> en el Administrador de IIS y se abre <code>http://localhost/aspdemo/index.asp</code>.</li>
+    <li data-n="2">Primer error: IIS no puede leer la carpeta → dar permisos al usuario anónimo <b>IUSR</b>.</li>
+    <li data-n="3">Segundo error: la diapositiva no dice la causa. Suele ser que la característica ASP no está habilitada o un error 500 del script. Confírmalo con tus apuntes.</li>
+  </ul>
+
+  <h2>Sintaxis VBScript</h2>
+  <div class="grid2">
+    <div class="card"><b>Delimitadores</b><br><code>&lt;% ... %&gt;</code> = código de servidor<br><code>&lt;%= x %&gt;</code> = atajo de <code>Response.Write</code></div>
+    <div class="card"><b>Variables</b><br>Todas son <b>Variant</b> · se declaran con <code>Dim</code> · <code>Option Explicit</code> obliga a declarar (≈ <code>"use strict"</code>)</div>
+    <div class="card"><b>Nombres</b><br>Empiezan con letra · sin punto · máx. <b>255</b> caracteres</div>
+    <div class="card"><b>Detalles</b><br>Comentario <code>'</code> · concatenar <code>&amp;</code> · fecha <code>#04/29/2025#</code> · <code>Dim cars(2)</code> = 3 posiciones</div>
+  </div>
+  <div class="code" data-lang="vbscript" data-title="variables.asp" data-id="c-asp-vars"></div>
+
+  <div class="grid2">
+    <div><h3>4 condicionales</h3><span class="pill">If</span><span class="pill">If…Then…Else</span><span class="pill">If…Then…ElseIf</span><span class="pill">Select Case</span></div>
+    <div><h3>4 bucles</h3><span class="pill">For…Next</span><span class="pill">For Each…Next</span><span class="pill">Do…Loop</span><span class="pill">While…Wend (mejor Do…Loop)</span></div>
+  </div>
+  <div class="code" data-lang="vbscript" data-title="condicionales y bucles" data-id="c-asp-ctrl"></div>
+
+  <h2>Formularios: GET vs POST</h2>
+  <div class="vs">
+    <div class="side-a"><h4>GET</h4><ul><li>Se lee con <b><code>Request.QueryString("campo")</code></b></li><li>Los datos van <b>en la URL</b></li></ul></div>
+    <div class="side-b"><h4>POST</h4><ul><li>Se lee con <b><code>Request.Form("campo")</code></b></li><li>Los datos van <b>ocultos en el cuerpo</b></li></ul></div>
+  </div>
+  <div class="code" data-lang="vbscript" data-title="formulario POST + procesar.asp" data-id="c-asp-form"></div>
+
+  <h2>SSR vs CSR</h2>
+  <table>
+    <tr><th></th><th>SSR (ASP clásico)</th><th>CSR (React, Vue, Angular)</th></tr>
+    <tr><td>Dónde se arma el HTML</td><td>Servidor</td><td>Navegador</td></tr>
+    <tr><td>Qué recibe el cliente</td><td>HTML listo</td><td>HTML vacío + JS</td></tr>
+    <tr><td>SEO</td><td style="color:var(--ok);font-weight:600">Muy bueno</td><td style="color:var(--bad);font-weight:600">Problemático</td></tr>
+    <tr><td>Interactividad</td><td style="color:var(--bad);font-weight:600">Limitada (recargas)</td><td style="color:var(--ok);font-weight:600">Muy alta (SPA)</td></tr>
+    <tr><td>Carga inicial</td><td style="color:var(--ok);font-weight:600">Rápida</td><td style="color:var(--bad);font-weight:600">Más lenta</td></tr>
+  </table>
+
+  <h2>¿Backend o frontend? · Código espagueti</h2>
+  <div class="grid2">
+    <div class="card"><b>Ambos → aplicación web monolítica.</b><br><span style="font-size:14px">Backend porque corre en IIS; frontend porque <i>genera</i> el HTML, CSS y JS. El código ASP en sí no es frontend.</span></div>
+    <div class="card"><b>Código espagueti</b><br><span style="font-size:14px">Un mismo .asp mezcla <b>HTML + VBScript + SQL</b>, más sesión, cookies y redirecciones. No impone MVC, capas ni componentes.</span></div>
+  </div>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>ASP = Active Server Pages · 1996 · .asp · VBScript · IIS.</li>
+    <li>Los 7 objetos (A-A-S-S-O-R-R).</li>
+    <li>QueryString = GET · Form = POST.</li>
+    <li><code>&lt;% %&gt;</code>, atajo <code>&lt;%= %&gt;</code>, Variant, Dim, Option Explicit.</li>
+    <li>Usuario anónimo de IIS: IUSR.</li>
+    <li>Por qué es SSR y por qué es código espagueti.</li>
+    <li>ADO = datos · CDONTS = correo.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 5 ============ -->
+<section class="view" id="v-tema-5">
+  <span class="kicker k-u1">Unidad 1.2 · Tema 5</span>
+  <h1>Apps tradicionales y modernas</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Lo tradicional (ASP, ASP.NET, PHP, JSP) es todo SSR. Lo moderno separa frontend y backend con frameworks especializados, y se gestiona con control de versiones y gestores de paquetes.</p></div>
+
+  <h2>El mapa de frameworks</h2>
+  <div class="grid3">
+    <div class="card" style="border-top:4px solid var(--u1)"><b>Frontend</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0">
+      <li><b>React</b> (+ Next.js): declarativo, componible</li>
+      <li><b>Angular</b> (Google): TypeScript, <mark>MVVM</mark></li>
+      <li><b>Vue</b> (+ Nuxt): progresivo</li>
+      <li><b>Svelte</b>: compila a JS puro</li>
+      <li><b>SolidJS</b>: rápido, JSX</li></ul></div>
+    <div class="card" style="border-top:4px solid var(--u2)"><b>Backend</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0">
+      <li><b>Express / NestJS</b> (JS/TS)</li>
+      <li><b>Django / FastAPI / Flask</b> (Python); FastAPI + OpenAPI</li>
+      <li><b>ASP.NET Core</b> (C#): multiplataforma</li>
+      <li><b>Spring Boot</b> (Java): empresarial</li>
+      <li><b>Laravel</b> (PHP)</li>
+      <li><b>Rails</b>: <mark>convención sobre configuración</mark></li>
+      <li><b>Phoenix</b> (Elixir): WebSockets, concurrencia</li></ul></div>
+    <div class="card" style="border-top:4px solid var(--ai)"><b>Full stack</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0">
+      <li>Django · ASP.NET · Spring Boot</li>
+      <li>Laravel · Ruby on Rails</li>
+      <li><b>Next.js</b> (React) · <b>Nuxt.js</b> (Vue)</li></ul>
+      <b style="display:block;margin-top:10px">Tradicional (SSR)</b><ul style="font-size:13.5px;padding-left:18px;margin:6px 0 0"><li>ASP · ASP.NET · PHP 3/4/5 · <b>JSP</b> (Java EE + Servlets, JSTL, JavaBeans)</li></ul></div>
+  </div>
+
+  <h2>Multiplataforma</h2>
+  <table>
+    <tr><th>Framework</th><th>Lenguaje</th><th>Plataformas</th></tr>
+    <tr><td>Electron</td><td>JS/TS + HTML/CSS</td><td>Escritorio</td></tr>
+    <tr><td>Ionic</td><td>JS/TS + Angular/React/Vue</td><td>Móvil, web</td></tr>
+    <tr><td>Flutter</td><td><mark>Dart</mark></td><td>Móvil, web, escritorio</td></tr>
+    <tr><td>React Native</td><td>JS/TS</td><td>iOS y Android</td></tr>
+    <tr><td>Xamarin / MAUI</td><td><mark>C#</mark></td><td>Móvil, escritorio, web</td></tr>
+  </table>
+  <p style="font-size:14px"><b>UI nativa</b> = los controles son los del propio sistema operativo, no simulados con HTML o canvas.</p>
+  <p style="font-size:14px"><b>Arquitecturas:</b> <span class="pill">SPA</span><span class="pill">JAMstack</span><span class="pill">LAMP / LAPP (legacy)</span><span class="pill">PWA</span><span class="pill">SSR</span><span class="pill">CSR</span><span class="pill">Microservicios</span><span class="pill">Serverless</span><span class="pill">BFF</span><span class="pill">Clean Architecture</span><span class="pill">DDD</span><span class="pill">Hexagonal</span></p>
+
+  <h2>Control de versiones</h2>
+  <div class="vs">
+    <div class="side-a"><h4>Centralizado (CVCS)</h4><ul><li>Un servidor central con todo el historial</li><li>Ej.: <b>Subversion (SVN)</b></li></ul></div>
+    <div class="side-b"><h4>Distribuido (DVCS)</h4><ul><li>Cada desarrollador tiene el repo completo</li><li>Ej.: <b>Git</b>, Mercurial</li></ul></div>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>Plataforma</th><th>Dueño</th><th>Destaca por</th></tr>
+    <tr><td>GitHub</td><td>Microsoft</td><td>Open source, Actions (CI/CD), Copilot</td></tr>
+    <tr><td>GitLab</td><td>GitLab Inc.</td><td>Open core, CI/CD nativa, autohospedable</td></tr>
+    <tr><td>Bitbucket</td><td><mark>Atlassian</mark></td><td>Jira, Trello, Confluence, Pipelines</td></tr>
+    <tr><td>Azure DevOps</td><td>Microsoft</td><td>Repos, Pipelines, Boards, Artifacts, Test Plans</td></tr>
+  </table>
+
+  <h2>Visual Studio: soluciones y proyectos</h2>
+  <div class="stack" style="max-width:640px">
+    <div class="mono-box" style="border-color:#6b6862;background:#efede7">
+      <div class="lbl" style="color:#4a4740"><span>Solución · <code>.sln</code></span><span>contiene proyectos y carpetas</span></div>
+      <div class="grid3" style="gap:8px">
+        <div class="layer"><b>Consola</b><small>.csproj</small></div>
+        <div class="layer"><b>DLL</b><small>biblioteca reutilizable</small></div>
+        <div class="layer"><b>WinForms</b><small>escritorio</small></div>
+        <div class="layer"><b>Web</b><small>.aspx (WebForms / MVC)</small></div>
+        <div class="layer"><b>WebService</b><small>.asmx</small></div>
+        <div class="layer"><b>WinService</b><small>servicio Windows</small></div>
+      </div>
+    </div>
+  </div>
+  <ul>
+    <li>Proyecto = <b>.csproj</b>. Para ver plantillas .NET Framework, el IDE debe estar <b>cerrado</b> al aplicar el cambio.</li>
+    <li><b>No administrado (unmanaged)</b>: nativo, C/C++, sin dependencias. <b>Administrado (managed)</b>: depende de un framework.</li>
+  </ul>
+
+  <h2>Gestores de paquetes</h2>
+  <table>
+    <tr><th>Lenguaje</th><th>Gestor</th><th>Repositorio</th><th>Comando</th></tr>
+    <tr><td>JavaScript</td><td>npm / yarn</td><td>npmjs.com</td><td><code>npm install x</code> · <code>yarn add x</code></td></tr>
+    <tr><td>Java</td><td>Maven / Gradle</td><td>Maven Central</td><td><code>pom.xml</code> · <code>build.gradle</code></td></tr>
+    <tr><td>Python</td><td>pip</td><td>PyPI</td><td><code>pip install x</code></td></tr>
+    <tr><td>PHP</td><td>Composer</td><td>Packagist</td><td><code>composer require x</code></td></tr>
+    <tr><td>Ruby</td><td>RubyGems</td><td>RubyGems.org</td><td><code>gem install x</code></td></tr>
+    <tr><td><b>C#</b></td><td><b>NuGet</b></td><td>nuget.org</td><td><mark><code>dotnet add package x</code></mark></td></tr>
+  </table>
+  <div class="warn"><b>NuGet</b> (“New Get”): creado por la <b>Fundación Outercurve</b> como <b>NuPack</b>, desde <b>2010</b>. Un paquete es un ZIP con extensión <b>.nupkg</b>.<br><b>Lab Azure DevOps:</b> organización <code>AppWebAv2026A</code> → proyecto <code>PoliMusicNombreApellido</code> → Repos → Clonar en VS.</div>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>ASP, ASP.NET, PHP y JSP son SSR.</li>
+    <li>Angular = MVVM · Svelte compila a JS · Rails = convención sobre configuración.</li>
+    <li>Flutter = Dart · MAUI = C#.</li>
+    <li>SVN centralizado · Git distribuido · Bitbucket es de Atlassian.</li>
+    <li>.sln · .csproj · .aspx · .asmx.</li>
+    <li><code>dotnet add package</code> · .nupkg · NuPack.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 6 ============ -->
+<section class="view" id="v-tema-6">
+  <span class="kicker k-u1">Unidad 1.2 · Tema 6 · prioridad alta</span>
+  <h1>Monolíticos y n-capas</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Un monolito es código programado como un solo bloque y ejecutado como una unidad indivisible. Puede ordenarse en capas (Presentación, BLL, DAL), pero sigue desplegándose como una sola pieza.</p></div>
+
+  <h2>Arquitectura de 3 capas</h2>
+  <div class="stack">
+    <div class="layer"><b>Cliente: navegador</b><small>thin client · HTTP/HTTPS</small></div>
+    <div class="down">▼</div>
+    <div class="mono-box">
+      <div class="lbl"><span>UN SOLO DESPLIEGUE EN IIS</span><span>1 proceso w3wp.exe</span></div>
+      <div class="layer"><b>1 · Presentación (UI)</b><small>.aspx, controles, validación</small></div>
+      <div class="down">▼</div>
+      <div class="layer"><b>2 · BLL · Business Logic Layer</b><small>coordina, procesa comandos, cálculos y lógica</small></div>
+      <div class="down">▼</div>
+      <div class="layer"><b>3 · DAL · Data Access Layer</b><small>consultas SQL, conexión</small></div>
+    </div>
+    <div class="down">▼</div>
+    <div class="layer"><b>Servidor de base de datos</b><small>SQL Server, MySQL, PostgreSQL…</small></div>
+  </div>
+  <p style="font-size:14px;text-align:center">Con <b>Process Explorer</b> (Sysinternals) se ve que la app corre en <b>un solo proceso</b>.</p>
+
+  <h2>Evolución de los modelos</h2>
+  <div class="timeline">
+    <div class="tl"><b>1970s</b><span>Funcionales</span></div>
+    <div class="tl"><b>1980s</b><span>Orientados a objetos</span></div>
+    <div class="tl"><b>1990s</b><span>Componentes</span></div>
+    <div class="tl"><b>2000s</b><span>Servicios (SOA)</span></div>
+    <div class="tl hot"><b>Hoy</b><span>Microservicios</span></div>
+  </div>
+  <p style="font-size:14px">Mainframes: COBOL, RPG, AS400, IBM. Estilos web: cliente-servidor · monolito 1 capa · monolito n-capas · SOA · microservicios.</p>
+
+  <h2>Descomposición del software</h2>
+  <p>Objetivo: <b>minimizar dependencias</b> y <b>maximizar cohesión</b>.</p>
+  <div class="vs">
+    <div class="side-a"><h4>Funcional (estructurada)</h4><ul><li>Divide un proceso en <b>etapas bien definidas</b></li><li>Funciones en C, procedures en Pascal/Basic</li><li>No hay clases</li></ul></div>
+    <div class="side-b"><h4>Orientada a objetos</h4><ul><li>Divide en <b>clases pequeñas</b>, una regla de negocio cada una</li><li>Ej. de Booch: <code>MasterFile</code> compone <code>FileOfUpdates</code>, <code>MasterRecord</code>, <code>UpdateToCard</code></li></ul></div>
+  </div>
+  <div class="code" data-lang="cpp" data-title="MasterFile.cpp (composición)" data-id="c-cpp"></div>
+
+  <h2>Cliente-servidor</h2>
+  <div class="vs">
+    <div class="side-a"><h4>Escritorio · thick client</h4><ul><li>Ejecutable instalado</li><li>Mucho procesamiento local</li><li>Comunicación por <b>TCP</b></li></ul></div>
+    <div class="side-b"><h4>Web · thin client</h4><ul><li>El <b>navegador</b></li><li>La lógica y los datos están en el servidor</li><li>Comunicación por <b>HTTP/HTTPS</b></li></ul></div>
+  </div>
+
+  <h2>Las 5 características</h2>
+  <div class="grid2">
+    <div class="card"><b>1 · Acoplamiento fuerte</b> <span class="pill" style="background:#fde2e2">la definitoria</span><br><span style="font-size:14px">Un cambio en una parte obliga a cambiar otras.</span></div>
+    <div class="card"><b>2 · Base de código única</b><br><span style="font-size:14px">Un solo repositorio.</span></div>
+    <div class="card"><b>3 · Despliegue único</b><br><span style="font-size:14px">Un artefacto; un cambio pequeño = redesplegar todo.</span></div>
+    <div class="card"><b>4 · Tecnología uniforme</b><br><span style="font-size:14px">Un lenguaje, un framework, una BD.</span></div>
+    <div class="card"><b>5 · Escalabilidad vertical</b><br><span style="font-size:14px">Más CPU y RAM. La horizontal es posible pero compleja por el estado compartido.</span></div>
+  </div>
+
+  <h2>Ventajas vs desventajas</h2>
+  <div class="vs">
+    <div class="side-a" style="border-color:var(--ok);background:var(--ok-bg)"><h4>Ventajas</h4><ul>
+      <li>Simplicidad inicial</li><li>Fácil de depurar</li><li>Fácil de implementar, sin orquestación</li><li>Estado global compartido, sin problemas de consistencia</li><li>Menor costo inicial</li><li>Menos complejidad operativa</li><li>Se optimiza una sola unidad</li></ul></div>
+    <div class="side-b" style="border-color:var(--bad);background:var(--bad-bg)"><h4>Desventajas (en inglés en el PDF)</h4><ul>
+      <li>Difícil de mantener · <b>Maintenance Burden</b></li><li>Escalar todo aunque una parte tenga demanda · <b>Scalability Challenges</b></li><li>Un error tumba todo · <b>Single Point of Failure</b></li><li>Difícil adoptar tecnologías nuevas · <b>Technology Lock-in</b></li><li>Equipos grandes se estorban · <b>Development Bottlenecks</b></li></ul></div>
+  </div>
+
+  <h2>Escalado en IIS</h2>
+  <div class="vs">
+    <div class="side-a"><h4>Vertical (scale up)</h4><ul><li>Más recursos a la misma máquina</li><li>Cada <b>application pool</b> = 1 <b>w3wp.exe</b> por defecto</li><li>Varios worker processes = <mark><b>web garden</b></mark></li></ul></div>
+    <div class="side-b"><h4>Horizontal (scale out)</h4><ul><li>Varias instancias en varios servidores</li><li>Detrás de un balanceador de carga</li></ul></div>
+  </div>
+  <div class="warn"><b>Web Forms</b>: archivos <b>.aspx</b>, programación <b>basada en eventos</b>, controles de servidor y code-behind. <b>Laboratorio:</b> 1 capa con VS 2026 y .NET Framework <b>2.0</b>; n-capas con <b>4.8</b> (canciones de PoliMusic).</div>
+
+  <div class="exam"><h4>★ Probable en examen (hay 10 preguntas oficiales en el quiz)</h4><ul>
+    <li>Definición: un solo bloque, ejecutado como unidad indivisible.</li>
+    <li>BLL y DAL: qué significan y qué hace cada una.</li>
+    <li>Acoplamiento fuerte, Single Point of Failure, Technology Lock-in.</li>
+    <li>Escalabilidad natural: vertical.</li>
+    <li>Thin client = navegador.</li>
+    <li>Descomposición funcional = etapas bien definidas.</li>
+    <li>w3wp.exe, application pool, web garden. Web Forms = .aspx.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 7 ============ -->
+<section class="view" id="v-tema-7">
+  <span class="kicker k-u2">Unidad 2.1 · Tema 7</span>
+  <h1>HTTP, AJAX y jQuery</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>HTTP es petición-respuesta: el servidor nunca habla primero. AJAX permite pedir datos sin recargar la página, pero sigue sin resolver el tiempo real. Por eso existen el polling y los WebSockets.</p></div>
+
+  <h2>El problema: el “push” es imposible en HTTP</h2>
+  <div class="flow">
+    <div class="node"><b>Usuario A</b><small>escribe un mensaje</small></div><div class="arr">POST →</div>
+    <div class="node" style="border-color:var(--u2)"><b>Servidor</b><small>solo reacciona</small></div><div class="arr" style="color:var(--bad)">✕</div>
+    <div class="node" style="border-style:dashed"><b>Usuario B</b><small>no se entera sin recargar</small></div>
+  </div>
+  <p style="font-size:14px">Lo necesitan chats, juegos en línea, apps colaborativas y seguimiento en tiempo real.</p>
+
+  <h2>Temario del curso</h2>
+  <div class="grid2">
+    <div class="card"><b>Cap. 1 · Frameworks</b><br><span style="font-size:13.5px">Tipos de apps · frameworks tradicionales y actuales · validación de formularios · frameworks cliente y servidor</span></div>
+    <div class="card" style="border-color:var(--u2)"><b>Cap. 2 · WebSockets</b><br><span style="font-size:13.5px">Introducción · funcionamiento · LongPolling · Client y Server · Seguridad</span></div>
+    <div class="card"><b>Cap. 3 · SOA</b><br><span style="font-size:13.5px">Introducción · principios · beneficios · análisis y diseño · servicios web</span></div>
+    <div class="card"><b>Cap. 4 · Microservicios</b><br><span style="font-size:13.5px">Ventajas · comparación con monolitos · migración · despliegue y monitoreo</span></div>
+  </div>
+
+  <h2>De la recarga a AJAX</h2>
+  <div class="vs">
+    <div class="side-a"><h4>demo1.asp · tradicional</h4><ul><li>POST a la misma página</li><li>El servidor espera 10 s (busy wait con <code>Timer</code>)</li><li><b>Toda la página</b> espera y se recarga</li></ul></div>
+    <div class="side-b"><h4>demo2.asp · AJAX</h4><ul><li><code>fetch</code> en segundo plano</li><li>Solo cambia un <code>&lt;p&gt;</code></li><li>La página <b>no se recarga</b></li></ul></div>
+  </div>
+  <div class="code" data-lang="vbscript" data-title="demo1.asp (servidor)" data-id="c-demo1"></div>
+  <ul class="notes"><li data-n="1"><code>Timer</code> = segundos desde medianoche. <b>86400</b> = segundos de un día, corrige el cruce de medianoche.</li></ul>
+  <div class="code" data-lang="javascript" data-title="demo2.asp (cliente con fetch)" data-id="c-demo2js"></div>
+  <div class="code" data-lang="vbscript" data-title="demo2.asp (servidor)" data-id="c-demo2asp"></div>
+  <ul class="notes">
+    <li data-n="1">El servidor sabe que es AJAX por la cabecera <b><code>X-Requested-With: XMLHttpRequest</code></b>.</li>
+    <li data-n="2">En ASP se lee como <code>Request.ServerVariables("HTTP_X_REQUESTED_WITH")</code>.</li>
+    <li data-n="3">Responde texto plano y corta con <code>Response.End</code>.</li>
+  </ul>
+
+  <h2>jQuery: complementa a JavaScript, no lo reemplaza</h2>
+  <table>
+    <tr><th>JavaScript puro (vanilla)</th><th>jQuery</th></tr>
+    <tr><td><code>document.getElementById("x")</code></td><td><code>$("#x")</code></td></tr>
+    <tr><td><code>el.addEventListener("click", fn)</code></td><td><code>$("#x").click(fn)</code></td></tr>
+    <tr><td><code>el.innerText = "Hola"</code></td><td><code>$("#x").text("Hola")</code></td></tr>
+    <tr><td><code>fetch(url)</code></td><td><code>$.ajax({ url, type, success, error })</code></td></tr>
+    <tr><td>esperar al DOM</td><td><code>$(document).ready(fn)</code></td></tr>
+  </table>
+  <div class="code" data-lang="javascript" data-title="demo3.aspx (jQuery)" data-id="c-demo3js"></div>
+  <div class="code" data-lang="csharp" data-title="demo3.aspx (C# · Page_Load)" data-id="c-demo3cs"></div>
+  <ul class="notes">
+    <li data-n="1">C# usa corchetes: <code>Request.QueryString["action"]</code>. VBScript usa paréntesis.</li>
+    <li data-n="2">Formato <code>"yyyy-MM-dd HH:mm:ss"</code>: <b>MM</b> = mes, <b>mm</b> = minutos.</li>
+    <li data-n="3">Dos variantes: <code>&lt;script runat="server"&gt;</code> en el .aspx, o <b>code-behind</b> (clase <code>partial</code> que hereda de <code>System.Web.UI.Page</code>).</li>
+  </ul>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>HTTP no sirve para tiempo real: el servidor no puede iniciar la comunicación.</li>
+    <li>AJAX = Asynchronous JavaScript And XML; actualiza sin recargar.</li>
+    <li>Cabecera <code>X-Requested-With: XMLHttpRequest</code>.</li>
+    <li>Equivalencias jQuery ↔ vanilla.</li>
+    <li>QueryString con corchetes en C#, con paréntesis en VBScript.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 8 ============ -->
+<section class="view" id="v-tema-8">
+  <span class="kicker k-u2">Unidad 2.1 · Tema 8 · prioridad alta</span>
+  <h1>Short polling y long polling</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>Polling simula tiempo real preguntando al servidor. Short polling pregunta cada N segundos y recibe muchas respuestas vacías; long polling deja la pregunta abierta hasta que hay datos. WebSocket elimina el problema con una conexión persistente y bidireccional.</p></div>
+
+  <h2>Los tres enfoques en el tiempo</h2>
+  <div class="lanes">
+    <div class="lane"><div class="lt">Short polling <small>pregunta cada N s · responde ya</small></div>
+      <div class="track">
+        <div class="ev empty" style="left:1%;width:7%">vacía</div><div class="ev empty" style="left:13%;width:7%">vacía</div>
+        <div class="ev empty" style="left:25%;width:7%">vacía</div><div class="ev empty" style="left:37%;width:7%">vacía</div>
+        <div class="ev data" style="left:49%;width:7%">¡dato!</div><div class="ev empty" style="left:61%;width:7%">vacía</div>
+        <div class="ev empty" style="left:73%;width:7%">vacía</div><div class="ev data" style="left:85%;width:7%">¡dato!</div>
+      </div></div>
+    <div class="lane"><div class="lt">Long polling <small>la petición queda retenida hasta que hay datos</small></div>
+      <div class="track">
+        <div class="ev hold" style="left:1%;width:46%">retenida…</div><div class="ev data" style="left:47.5%;width:6%">dato</div>
+        <div class="ev hold" style="left:54.5%;width:29%">retenida…</div><div class="ev data" style="left:84%;width:6%">dato</div>
+      </div></div>
+    <div class="lane"><div class="lt">WebSocket <small>una conexión persistente · ambos lados envían</small></div>
+      <div class="track">
+        <div class="ev ws" style="left:1%;width:98%;opacity:.25"></div>
+        <div class="ev data" style="left:1%;width:9%">handshake</div><div class="ev data" style="left:48%;width:6%">dato</div><div class="ev data" style="left:84%;width:6%">dato</div>
+      </div></div>
+  </div>
+  <p style="font-size:14px">Cuenta de clase: <mark>1.000 clientes preguntando cada 3 s = 333 peticiones por segundo</mark>, casi todas vacías.</p>
+
+  <h2>Long polling en 4 pasos</h2>
+  <div class="flow">
+    <div class="node"><b>1 · Envía</b><small>el cliente hace la petición HTTP</small></div><div class="arr">→</div>
+    <div class="node"><b>2 · Espera</b><small>el servidor no responde sin datos</small></div><div class="arr">→</div>
+    <div class="node"><b>3 · Responde</b><small>con datos (o timeout) y cierra</small></div><div class="arr">→</div>
+    <div class="node"><b>4 · Repite</b><small>el cliente abre otra de inmediato</small></div>
+  </div>
+  <p style="font-size:14px">Caso real: <b>Gmail</b> usó una variante de la arquitectura <b>Comet</b>.</p>
+
+  <div class="vs">
+    <div class="side-a" style="border-color:var(--ok);background:var(--ok-bg)"><h4>Ventajas</h4><ul><li>Tiempo real sin WebSockets</li><li>Compatible con casi todo</li><li>Menos consultas vacías que short polling</li></ul></div>
+    <div class="side-b" style="border-color:var(--bad);background:var(--bad-bg)"><h4>Desventajas</h4><ul><li>Carga con muchos clientes simultáneos</li><li>Reabrir petición tras cada respuesta</li><li>Menos eficiente que WebSocket</li></ul></div>
+  </div>
+
+  <h2>Por qué no es suficiente (4 razones)</h2>
+  <div class="grid2">
+    <div class="card"><b>1 · Una conexión por petición</b><br><span style="font-size:14px">Cada una implica un handshake TCP.</span></div>
+    <div class="card"><b>2 · Cabeceras verbosas</b><br><span style="font-size:14px">HTTP repite encabezados y gasta ancho de banda.</span></div>
+    <div class="card"><b>3 · Consultas vacías</b><br><span style="font-size:14px">Sobre todo en short polling.</span></div>
+    <div class="card"><b>4 · Un solo sentido</b><br><span style="font-size:14px">El cliente siempre inicia.</span></div>
+  </div>
+  <p>Solución: una <b>conexión persistente y bidireccional</b> → <b>WebSocket</b>.</p>
+
+  <h2>Tabla comparativa</h2>
+  <table>
+    <tr><th></th><th>Short polling</th><th>Long polling</th><th>WebSocket</th></tr>
+    <tr><td>Conexión</td><td>Nueva en cada consulta</td><td>Nueva tras cada respuesta</td><td><b>Una, persistente</b></td></tr>
+    <tr><td>Respuestas vacías</td><td>Muchas</td><td>Pocas</td><td>Ninguna</td></tr>
+    <tr><td>Latencia</td><td>Hasta N s</td><td>Casi inmediata</td><td>Inmediata</td></tr>
+    <tr><td>Dirección</td><td>Cliente → servidor</td><td>Push emulado</td><td><b>Bidireccional</b></td></tr>
+    <tr><td>Sobrecarga HTTP</td><td>Alta</td><td>Media</td><td>Mínima tras el handshake</td></tr>
+  </table>
+
+  <h2>Ejercicio: Node.js + Express</h2>
+  <p style="font-size:14px">Herramientas: Node.js, <b>Express</b>, <b>ws</b> (para WebSocket), frontend vanilla con <b>Live Server</b>.</p>
+  <div class="code" data-lang="bash" data-title="terminal" data-id="c-npm"></div>
+  <div class="code" data-lang="javascript" data-title="index.js (servidor)" data-id="c-lp-server"></div>
+  <ul class="notes">
+    <li data-n="1">El truco: <b>guardar <code>res</code> en <code>clients</code> sin responder</b>. La respuesta sale después, en el <code>setInterval</code>.</li>
+    <li data-n="2"><code>clients = []</code>: una respuesta HTTP solo se envía una vez.</li>
+    <li data-n="3"><code>req.on('close')</code> quita a los clientes desconectados.</li>
+    <li data-n="4"><code>Access-Control-Allow-Origin: *</code> (CORS) deja que Live Server (otro puerto) llame al puerto 3000.</li>
+    <li data-n="5">El comentario habla de 30 s, pero <b>no hay timeout implementado</b>: el límite real es el intervalo de 10 s.</li>
+  </ul>
+  <div class="code" data-lang="javascript" data-title="index.html (cliente)" data-id="c-lp-client"></div>
+  <ul class="notes"><li data-n="1">La llamada a <code>recibirEventos()</code> dentro del <code>.then</code> es lo que <b>reabre la petición</b>. Si hay error, reintenta en 5 s.</li></ul>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>Short = responde ya · Long = responde cuando hay datos.</li>
+    <li>Long polling emula push; WebSocket es bidireccional y persistente.</li>
+    <li>Gmail / Comet.</li>
+    <li>Las 4 razones por las que no basta.</li>
+    <li>La tabla comparativa y la cuenta de 333 req/s.</li>
+  </ul></div>
+</section>
+
+<!-- ============ TEMA 9 ============ -->
+<section class="view" id="v-tema-9">
+  <span class="kicker k-u2">Unidad 2.1 · Tema 9 · prioridad alta</span>
+  <h1>WebSockets seguros, TLS y JWT</h1>
+  <div class="card idea"><b class="t">Idea clave</b><p>WSS es WebSocket cifrado con TLS (esquema wss://). TLS necesita un certificado público (cert.pem) y una clave privada (key.pem). JWT autentica al usuario al conectarse con un token firmado de tres partes.</p></div>
+
+  <h2>Cómo se abre una conexión WSS</h2>
+  <div class="flow">
+    <div class="node"><b>1 · Handshake</b><small>por HTTPS, puerto 443 o el definido</small></div><div class="arr">→</div>
+    <div class="node"><b>2 · Upgrade</b><small>HTTP pasa a WebSocket, conserva TLS</small></div><div class="arr">→</div>
+    <div class="node" style="border-color:var(--ok)"><b>3 · Cifrado</b><small>todo viaja protegido</small></div>
+  </div>
+  <p style="font-size:14px">Complemento estándar (no está en el PDF): el cliente envía <code>Upgrade: websocket</code> y <code>Connection: Upgrade</code>; el servidor responde <b><code>101 Switching Protocols</code></b>.</p>
+
+  <h2>SSL → TLS</h2>
+  <div class="timeline">
+    <div class="tl"><b>SSL 1.0</b><span>nunca publicado</span></div>
+    <div class="tl"><b>SSL 2.0</b><span>vulnerable</span></div>
+    <div class="tl"><b>SSL 3.0</b><span>1996</span></div>
+    <div class="tl"><b>TLS 1.0</b><span>basado en SSL 3.0</span></div>
+    <div class="tl"><b>TLS 1.1</b><span>obsoleto</span></div>
+    <div class="tl hot"><b>TLS 1.2 / 1.3</b><span>los actuales</span></div>
+  </div>
+  <p style="font-size:14px">SSL = Secure Sockets Layer, creado por <b>Netscape</b> (años 90). TLS = Transport Layer Security, su sucesor, más seguro.</p>
+
+  <h2>OpenSSL y los dos archivos</h2>
+  <div class="vs">
+    <div class="side-a" style="border-color:var(--ok);background:var(--ok-bg)"><h4>cert.pem · certificado · PÚBLICO</h4><ul><li>Clave pública</li><li>Identidad del servidor</li><li>Firma de la CA</li><li>Los clientes verifican al servidor con él</li></ul></div>
+    <div class="side-b" style="border-color:var(--bad);background:var(--bad-bg)"><h4>key.pem · clave privada · SECRETO</h4><ul><li>Descifrar datos</li><li>Firmar comunicaciones</li><li><b>Nunca se comparte</b></li></ul></div>
+  </div>
+  <p style="font-size:14px">Formato Base64 entre <code>-----BEGIN CERTIFICATE-----</code> y <code>-----BEGIN PRIVATE KEY-----</code>. Se configuran en IIS, Apache, Nginx y Node.js.</p>
+  <div class="code" data-lang="bash" data-title="generar certificado de prueba (complemento para el lab)" data-id="c-openssl"></div>
+  <div class="code" data-lang="javascript" data-title="servidor WSS básico" data-id="c-wss"></div>
+  <ul class="notes"><li data-n="1">El WebSocket no abre su propio puerto: <b>se monta sobre el servidor HTTPS</b> (<code>{ server }</code>) y así hereda TLS.</li></ul>
+
+  <h2>JWT (JSON Web Token) · RFC 7519</h2>
+  <div class="jwt"><span class="j1">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span class="j2">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0</span>.<span class="j3">KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30</span></div>
+  <div class="jwtparts">
+    <div style="border-color:#d6336c"><h5 class="j1">1 · Header</h5>Algoritmo y tipo<pre>{ "alg": "HS256",
+  "typ": "JWT" }</pre></div>
+    <div style="border-color:#7c3aed"><h5 class="j2">2 · Payload</h5>Las claims<pre>{ "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022,
+  "admin": true }</pre></div>
+    <div style="border-color:#0891b2"><h5 class="j3">3 · Signature</h5>Autenticidad e integridad<pre>HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)</pre></div>
+  </div>
+  <div class="grid2" style="margin-top:12px">
+    <div class="card"><b>Claims</b><ul style="font-size:14px;padding-left:18px;margin:6px 0 0"><li><b>Registradas:</b> <code>sub</code> sujeto · <code>iss</code> emisor · <code>aud</code> audiencia · <code>exp</code> expiración · <code>iat</code> emisión (Unix timestamp)</li><li><b>Públicas:</b> registro IANA</li><li><b>Privadas:</b> propias (ej. <code>admin</code>)</li></ul></div>
+    <div class="card" style="border-color:var(--bad)"><b style="color:var(--bad)">Cuidado</b><ul style="font-size:14px;padding-left:18px;margin:6px 0 0"><li>El payload <b>no está cifrado</b>, solo codificado en Base64URL: se lee en jwt.io</li><li>Nunca contraseñas ni tarjetas en el payload</li><li><code>eyJ</code> = <code>{"</code> en Base64</li><li>HS256: secreto ≥ <b>256 bits (32 bytes)</b></li></ul></div>
+  </div>
+
+  <div class="vs" style="margin-top:12px">
+    <div class="side-a" style="border-color:var(--ok);background:var(--ok-bg)"><h4>Ventajas</h4><ul><li><b>Stateless</b> (nada en el servidor)</li><li>Portable entre dominios</li><li>Compacto (URLs, cabeceras)</li><li>Autocontenido · estándar · flexible</li></ul></div>
+    <div class="side-b" style="border-color:var(--bad);background:var(--bad-bg)"><h4>Desventajas</h4><ul><li><b>No revocable</b> hasta que expira</li><li>Crece con muchas claims</li><li>Si se filtra el secreto, todos los tokens caen</li></ul></div>
+  </div>
+  <h3>6 buenas prácticas</h3>
+  <div class="grid3">
+    <div class="card" style="font-size:14px"><b>Expiración corta</b><br>15–30 min</div>
+    <div class="card" style="font-size:14px"><b>Refresh tokens</b><br>renovar sin reautenticar</div>
+    <div class="card" style="font-size:14px"><b>HTTPS obligatorio</b><br>nunca por HTTP</div>
+    <div class="card" style="font-size:14px"><b>Validación estricta</b><br>firma, expiración, claims</div>
+    <div class="card" style="font-size:14px"><b>Rotación de claves</b><br>cambiar secretos</div>
+    <div class="card" style="font-size:14px"><b>Claims mínimas</b><br>solo lo necesario</div>
+  </div>
+
+  <h2>WSS + JWT</h2>
+  <div class="code" data-lang="javascript" data-title="cliente + servidor" data-id="c-jwt"></div>
+  <ul class="notes">
+    <li data-n="1">El token viaja en la <b>query string</b> de la URL.</li>
+    <li data-n="2"><code>jwt.verify</code> valida firma y expiración; si falla lanza excepción.</li>
+    <li data-n="3"><b><code>ws.close(1008)</code></b>: 1008 = <b>Policy Violation</b>.</li>
+    <li data-n="4">Para el análisis del lab: el token en la URL puede quedar en logs, y <code>'secreto'</code> está fijo en el código y es demasiado corto.</li>
+  </ul>
+  <div class="warn">Laboratorio: <b>LabWebAvWebSocketSeguroJWT</b> (subir código y capturas).</div>
+
+  <div class="exam"><h4>★ Probable en examen</h4><ul>
+    <li>WSS = WebSocket + TLS · <code>wss://</code> · handshake por HTTPS (443).</li>
+    <li>TLS sucede a SSL; SSL es de Netscape; actuales TLS 1.2 y 1.3.</li>
+    <li>cert.pem público · key.pem privado.</li>
+    <li>JWT: RFC 7519, header.payload.signature, HS256.</li>
+    <li>Claims sub, iss, aud, exp, iat.</li>
+    <li>Desventaja principal: no revocable. Expiración 15–30 min.</li>
+    <li>Código de cierre 1008. Spoofing: TLS + JWT + revisar Origin.</li>
+  </ul></div>
+</section>
+
+<!-- ============ PROFE ============ -->
+<section class="view" id="v-profe">
+  <span class="kicker" style="background:#ffe4e8;color:#be123c">Confirmadas por el profesor · prioridad máxima</span>
+  <h1>Preguntas del profe</h1>
+  <p class="lead">Estas salen de tus apuntes: el profesor dijo explícitamente que son preguntas de examen. Debajo de cada una hay preguntas “hermanas” que salen de la misma idea y de los laboratorios.</p>
+
+  <h2>1 · El comando docker de SQL Server (Lab 1)</h2>
+  <div class="cmdline">docker run <span class="c1">-e "ACCEPT_EULA=Y"</span> <span class="c2">-e "MSSQL_SA_PASSWORD=Politecnica1"</span> <span class="c3">-e "MSSQL_PID=Express"</span> <span class="c4">-p 14333:1433</span> <span class="c5">--name sql-server2025 --hostname sql-server2025</span> <span class="c6">-d</span> mcr.microsoft.com/mssql/server:2025-latest</div>
+  <div class="flags">
+    <div class="f">docker run</div><div>Crea <b>y arranca</b> un contenedor a partir de una imagen (antes se descarga con <code>docker pull</code>).</div>
+    <div class="f">-e</div><div>Define una <b>variable de entorno</b> dentro del contenedor.</div>
+    <div class="f">ACCEPT_EULA=Y</div><div>Acepta la licencia de usuario final (End User License Agreement). Sin esto SQL Server no arranca.</div>
+    <div class="f">MSSQL_SA_PASSWORD</div><div>Contraseña del usuario <mark><b>SA = System Administrator</b></mark>, el administrador de SQL Server.</div>
+    <div class="f">MSSQL_PID=Express</div><div>Product ID: la <b>edición</b> de SQL Server (Express, Developer, Standard…).</div>
+    <div class="f">-p 14333:1433</div><div><mark><b>Puerto del host : puerto del contenedor</b></mark>. Tu PC escucha en 14333 y lo reenvía al 1433 del contenedor. <b>1433 = puerto por defecto de SQL Server</b>.</div>
+    <div class="f">--name</div><div>Nombre del contenedor (para <code>docker stop sql-server2025</code>, etc.).</div>
+    <div class="f">--hostname</div><div>Nombre de máquina dentro del contenedor.</div>
+    <div class="f">-d</div><div><mark><b>Detached</b></mark>: se ejecuta en <b>segundo plano</b> y te devuelve la terminal.</div>
+    <div class="f">mcr.microsoft.com/…:2025-latest</div><div>La <b>imagen</b>, del Microsoft Container Registry, etiqueta (tag) <code>2025-latest</code>.</div>
+  </div>
+  <div class="warn">Para conectarte desde SSMS al contenedor: <code>localhost,14333</code> (con coma, no dos puntos) y usuario <code>sa</code>. Comandos hermanos: <code>docker pull</code> (descargar imagen), <code>docker ps</code> (ver contenedores corriendo; el Container ID es aleatorio), <code>docker stop</code> / <code>docker start</code>.</div>
+
+  <h2>2 · Las demás preguntas</h2>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es RHEL?</b></div>
+    <p><b>Red Hat Enterprise Linux</b>: la distribución Linux empresarial de Red Hat. Está construida sobre software <b>open source</b>, pero se vende con suscripción de soporte comercial. Viene al caso porque <b>SQL Server corre en Linux</b> (desde la versión 2017), y RHEL es una de las distribuciones soportadas; por eso también puede correr en un contenedor Docker.</p></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es bcp en SQL Server?</b></div>
+    <p><b>bcp = Bulk Copy Program</b>: utilidad de línea de comandos para <b>importar o exportar grandes volúmenes de datos</b> entre una tabla de SQL Server y un archivo (CSV, texto). Modos: <code>in</code> (archivo → tabla), <code>out</code> (tabla → archivo), <code>queryout</code> (resultado de una consulta → archivo).</p>
+    <div class="code" data-lang="bash" data-title="ejemplo bcp (exportar canciones)" data-id="c-bcp"></div></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es ADO.NET?</b></div>
+    <p>El conjunto de clases de .NET para <b>acceder a bases de datos</b> (espacios <code>System.Data</code> y <code>System.Data.SqlClient</code>). Es el sucesor de ADO, que usaba ASP clásico. Es lo que usan los Labs 1, 3 y 4.</p>
+    <table style="margin-top:10px"><tr><th>Clase</th><th>Para qué</th></tr>
+      <tr><td><code>SqlConnection</code></td><td>Abre la conexión con la cadena de conexión</td></tr>
+      <tr><td><code>SqlCommand</code></td><td>Ejecuta una sentencia SQL o un procedimiento</td></tr>
+      <tr><td><code>SqlParameter</code> / <code>Parameters.AddWithValue</code></td><td>Parámetros: evitan la <b>inyección SQL</b></td></tr>
+      <tr><td><code>SqlDataReader</code></td><td>Lee filas <b>conectado</b>, solo hacia adelante (rápido)</td></tr>
+      <tr><td><code>SqlDataAdapter</code> + <code>DataTable</code>/<code>DataSet</code></td><td>Modelo <b>desconectado</b>: llena una tabla en memoria con <code>Fill()</code></td></tr>
+    </table>
+    <table style="margin-top:10px"><tr><th>Método de SqlCommand</th><th>Devuelve</th><th>Se usa para</th></tr>
+      <tr><td><code>ExecuteNonQuery()</code></td><td>Filas afectadas (int)</td><td>INSERT, UPDATE, DELETE</td></tr>
+      <tr><td><code>ExecuteScalar()</code></td><td>Un solo valor (object)</td><td>COUNT, buscar un ID</td></tr>
+      <tr><td><code>ExecuteReader()</code></td><td>SqlDataReader</td><td>SELECT de varias filas</td></tr>
+    </table></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es el CLR?</b></div>
+    <p><b>Common Language Runtime</b>: el entorno de ejecución (máquina virtual) de .NET. El compilador de C# genera <b>CIL/MSIL</b> (lenguaje intermedio); el CLR lo compila a código nativo con el <b>JIT</b> (Just-In-Time) y además se encarga del <b>recolector de basura (garbage collector)</b>, la seguridad de tipos y las excepciones. El código que corre sobre el CLR es <b>código administrado (managed)</b>; el de C/C++ nativo es <b>no administrado</b> (Tema 5).</p></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es Entity Framework?</b></div>
+    <p>El <b>ORM</b> (Object-Relational Mapper) de Microsoft para .NET: mapea tablas a clases y filas a objetos, y permite consultar con <b>LINQ</b> en lugar de escribir SQL. Piezas: <code>DbContext</code> (la conexión/sesión) y <code>DbSet&lt;T&gt;</code> (una tabla). Enfoques: <b>Code First</b> (las clases generan la BD, con migraciones) y <b>Database First</b> (la BD genera las clases). <b>EF Core</b> es la versión multiplataforma para .NET moderno.</p></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es ad hoc?</b> <small style="color:var(--muted)">(tu apunte: “cuando no se opta por un ORM”)</small></div>
+    <p>Una <b>consulta ad hoc</b> es SQL escrito “para este caso” directamente en el código, en lugar de usar un ORM (como Entity Framework) o procedimientos almacenados. Es exactamente lo que hacen las clases DAL de los Labs 3 y 4: <code>cmd.CommandText = "SELECT ... WHERE [USERNAME] = @USERNAME"</code>. Ventaja: control total y rendimiento. Riesgo: <b>inyección SQL</b> si se concatena texto del usuario, por eso se usan <b>parámetros</b>.</p></div>
+  <div class="qa"><div class="qh"><span class="tag">Profe</span><b>¿Qué es WebSocket?</b></div>
+    <p>Un protocolo de comunicación <b>bidireccional (full-duplex) y en tiempo real</b> sobre <b>una sola conexión TCP persistente</b>. Empieza como petición HTTP con <code>Upgrade: websocket</code>; el servidor responde <b>101 Switching Protocols</b> y desde ahí cliente y servidor envían mensajes cuando quieran, sin volver a pedir. Esquemas <code>ws://</code> y <code>wss://</code> (cifrado con TLS). Resuelve lo que el polling solo simulaba. En Node se usa la librería <b>ws</b> (Lab 5) o <b>Socket.IO</b> (Lab 7). El estándar es el RFC 6455 (dato complementario, no está en los PDFs).</p></div>
+
+  <h2>3 · Preguntas hermanas probables</h2>
+  <div class="grid2">
+    <div class="qa"><div class="qh"><span class="tag d">Docker</span><b>¿Imagen vs contenedor?</b></div><p>La <b>imagen</b> es la plantilla (solo lectura) que se descarga; el <b>contenedor</b> es una instancia en ejecución de esa imagen.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Por qué 14333 y no 1433?</b></div><p>Para no chocar con un SQL Server instalado en la PC, que ya usa el 1433. El contenedor sigue usando 1433 por dentro.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Cómo verificas que el puerto escucha?</b></div><p><code>telnet localhost 1433</code> o en PowerShell <code>Test-NetConnection localhost -Port 1433</code>.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Para qué sirve SQL Profiler?</b></div><p>Para ver en vivo las sentencias que la app envía a la BD. En el lab se activan los eventos <b>RPC:Completed</b> y <b>SQL:BatchStarting</b>.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Qué es SSMS?</b></div><p>SQL Server Management Studio: el administrador gráfico de SQL Server.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Qué es un ORM?</b></div><p>Object-Relational Mapper: traduce entre objetos del código y tablas relacionales. Ej.: Entity Framework (.NET), Hibernate (Java). Lo contrario es SQL ad hoc con ADO.NET.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">SQL</span><b>¿Qué es la inyección SQL y cómo se evita?</b></div><p>Meter código SQL en un campo de texto para alterar la consulta. Se evita con <b>consultas parametrizadas</b> (<code>@USERNAME</code> en ADO.NET, <code>?</code> con <code>ADODB.Command</code> en ASP).</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">.NET</span><b>¿Qué es LINQ?</b></div><p>Language Integrated Query: consultas escritas en C# (<code>from s in db.Songs where … select s</code>) que EF traduce a SQL.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">Seguridad</span><b>¿SHA1 vs PBKDF2?</b></div><p>En los labs, <code>GeneratePasswordHash</code> usa <b>SHA1</b> (hash simple, hexadecimal). <code>HashPassword</code> usa <b>PBKDF2</b> (<code>Rfc2898DeriveBytes</code>) con <b>salt aleatorio de 16 bytes y 100.000 iteraciones</b>: mucho más seguro contra fuerza bruta.</p></div>
+    <div class="qa"><div class="qh"><span class="tag d">WebSocket</span><b>¿WebSocket vs Socket.IO?</b></div><p>WebSocket es el <b>protocolo</b>. Socket.IO es una <b>biblioteca</b> (capa de abstracción) encima: eventos con nombre (<code>emit</code>/<code>on</code>), reconexión automática y respaldo a long polling. Un cliente WebSocket puro no puede hablar con un servidor Socket.IO.</p></div>
+  </div>
+</section>
+
+<!-- ============ PRÁCTICA ============ -->
+<section class="view" id="v-practica">
+  <span class="kicker k-x">Parte práctica del examen</span>
+  <h1>Cómo armar la página en el examen</h1>
+  <p class="lead">La parte práctica pide crear una página. Por lo visto en los labs, lo más probable es uno de estos cuatro escenarios. Ten estas plantillas en la cabeza y practica escribir la más probable (el chat) sin mirar.</p>
+
+  <div class="grid2">
+    <div class="card" style="border-top:4px solid var(--u2)"><b>A · Chat con WebSocket</b> <span class="prio p-a">más probable</span><br><span style="font-size:14px">Express + ws, carpeta <code>public</code>, broadcast. Lab 5. Base para WSS (Lab 6) y Socket.IO (Lab 7).</span></div>
+    <div class="card" style="border-top:4px solid var(--u2)"><b>B · Chat con Socket.IO</b><br><span style="font-size:14px">Express + socket.io, <code>io.emit</code>. Lab 7. Es el más corto de escribir.</span></div>
+    <div class="card" style="border-top:4px solid var(--u1)"><b>C · Página ASP clásico</b><br><span style="font-size:14px">Login + lista de canciones con ADODB y Session. Lab 2.</span></div>
+    <div class="card" style="border-top:4px solid var(--u1)"><b>D · Web Forms con GridView</b><br><span style="font-size:14px">Song.aspx + code-behind + BLL/DAL. Labs 3 y 4.</span></div>
+  </div>
+
+  <h2>Checklist que suele calificarse</h2>
+  <div class="card"><ul style="margin:0;padding-left:20px">
+    <li>Mensaje de bienvenida con el usuario de la sesión, opción de <b>logout</b>.</li>
+    <li>Diseño propio: <b>HTML, CSS y JS separados</b>, paleta con <b>variables CSS</b>, responsive (media queries).</li>
+    <li>Mostrar texto del usuario con <code>textContent</code> o <code>Server.HTMLEncode</code> (evita <b>XSS</b>).</li>
+    <li>Consultas a BD <b>parametrizadas</b>.</li>
+    <li>En chats: estado conectado/desconectado, rechazar mensajes vacíos, mensajes propios a la derecha y ajenos a la izquierda.</li>
+    <li><code>node_modules</code> fuera del repo (<code>.gitignore</code>).</li>
+  </ul></div>
+
+  <h2>A · Chat WebSocket (Express + ws)</h2>
+  <div class="code" data-lang="bash" data-title="terminal" data-id="c-pr-ws-cmd"></div>
+  <div class="code" data-lang="javascript" data-title="index.js (servidor)" data-id="c-lab5-server"></div>
+  <div class="code" data-lang="html" data-title="public/index.html (cliente mínimo)" data-id="c-pr-ws-client"></div>
+  <ul class="notes">
+    <li data-n="1"><code>express.static('public')</code> sirve el HTML; <code>app.listen</code> devuelve el servidor HTTP sobre el que se monta <code>new WebSocket.Server({ server })</code>.</li>
+    <li data-n="2">Broadcast: recorrer los clientes y enviar solo a los que tienen <code>readyState === WebSocket.OPEN</code>.</li>
+    <li data-n="3">En el cliente: <code>location.protocol === 'https:' ? 'wss:' : 'ws:'</code> y los eventos <code>onopen</code>, <code>onmessage</code>, <code>onclose</code>, <code>onerror</code>.</li>
+    <li data-n="4">Se envía con <code>JSON.stringify</code> y se lee con <code>JSON.parse(event.data)</code>.</li>
+  </ul>
+
+  <h2>B · Chat Socket.IO</h2>
+  <div class="code" data-lang="javascript" data-title="index.js (servidor)" data-id="c-lab7-server"></div>
+  <div class="code" data-lang="html" data-title="public/index.html (cliente)" data-id="c-lab7-client"></div>
+
+  <h2>C · ASP clásico: conexión, login y lista</h2>
+  <div class="code" data-lang="vbscript" data-title="conn.asp" data-id="c-pr-conn"></div>
+  <div class="code" data-lang="vbscript" data-title="login.asp" data-id="c-pr-login"></div>
+  <div class="code" data-lang="vbscript" data-title="songs.asp" data-id="c-pr-songs"></div>
+  <ul class="notes">
+    <li data-n="1"><code>&lt;!--#include file="conn.asp"--&gt;</code> reutiliza la conexión en todas las páginas.</li>
+    <li data-n="2"><code>ADODB.Command</code> con <code>?</code> y <code>CreateParameter</code>: nunca concatenar lo que escribe el usuario.</li>
+    <li data-n="3">Recorrer con <code>Do While Not rs.EOF … rs.MoveNext … Loop</code> y cerrar <code>rs</code> y la conexión.</li>
+    <li data-n="4">Logout: <code>Session.Abandon</code> y <code>Response.Redirect "login.asp"</code>.</li>
+  </ul>
+
+  <h2>D · Web Forms: GridView de canciones</h2>
+  <div class="code" data-lang="html" data-title="Song.aspx (diseño)" data-id="c-pr-aspx"></div>
+  <div class="code" data-lang="csharp" data-title="Song.aspx.cs (code-behind)" data-id="c-pr-aspxcs"></div>
+</section>
+
+<!-- ============ LAB 1 ============ -->
+<section class="view" id="v-lab-1">
+  <span class="kicker k-lab">Laboratorio 1</span>
+  <h1>Tipos de proyectos y SQL Server en Docker</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>Levantaste SQL Server 2025 en Docker, creaste la base BDD_PoliMusic y conectaste tres tipos de proyecto (consola, escritorio y Web Forms) para listar canciones con ADO.NET.</p></div>
+
+  <h2>Prerrequisitos (preguntables)</h2>
+  <div class="grid3">
+    <div class="card" style="font-size:14px">Soporte <b>.NET 2.0, 3.0, 3.5</b> habilitado en Windows</div>
+    <div class="card" style="font-size:14px"><b>IIS</b> con soporte ASP y ASP.NET</div>
+    <div class="card" style="font-size:14px">Cliente <b>Telnet</b> habilitado</div>
+    <div class="card" style="font-size:14px">Plantilla “ASP.NET Web Application (.NET Framework)”</div>
+    <div class="card" style="font-size:14px"><b>Docker Desktop</b> + SQL Server y su motor corriendo</div>
+    <div class="card" style="font-size:14px">Puerto <b>1433</b> (local) o <b>14333</b> (contenedor) + <b>SSMS</b></div>
+  </div>
+
+  <h2>SQL Server en Docker</h2>
+  <div class="code" data-lang="bash" data-title="docker" data-id="c-docker"></div>
+  <p style="font-size:14px">La explicación de cada parámetro está en <a href="#profe">Preguntas del profe</a>.</p>
+
+  <h2>Formas de conectarse desde SSMS</h2>
+  <table>
+    <tr><th>Servidor</th><th>Protocolo</th></tr>
+    <tr><td><code>.</code></td><td>Shared Memory (por defecto)</td></tr>
+    <tr><td><code>localhost</code></td><td>Shared Memory (luego TCP)</td></tr>
+    <tr><td><code>localhost,1433</code></td><td>TCP/IP explícito</td></tr>
+    <tr><td><code>localhost\SQLEXPRESS</code></td><td>Shared Memory o TCP/IP (instancia con nombre)</td></tr>
+    <tr><td><code>127.0.0.1</code> · <code>127.0.0.1,1433</code></td><td>TCP/IP · TCP/IP explícito</td></tr>
+    <tr><td><code>NOMBREPC</code></td><td>TCP/IP o Named Pipes</td></tr>
+  </table>
+
+  <h2>La base BDD_PoliMusic</h2>
+  <ul>
+    <li>Tabla núcleo: <mark><b>TBL_SONG</b></mark>; las demás (playlists, álbumes, artistas) se conectan a ella.</li>
+    <li>Otras tablas usadas: <code>TBL_USER</code> (USER_TYPE 0 = normal, 1 = admin), <code>TBL_ALBUM</code>, <code>TBL_TRACKLIST</code> (une canciones con álbumes).</li>
+    <li>Usuario de la app: <code>usr_polimusic</code> / <code>Politecnica1</code>.</li>
+    <li>Verificar el puerto: <code>telnet</code> o <code>Test-NetConnection localhost -Port 1433</code>.</li>
+    <li><b>SQL Profiler</b>: eventos <b>RPC:Completed</b> y <b>SQL:BatchStarting</b>.</li>
+  </ul>
+
+  <h2>Cadenas de conexión (connectionstrings.com)</h2>
+  <table>
+    <tr><th>Tipo</th><th>Cadena</th></tr>
+    <tr><td><b>Standard Security</b><br><small>usuario y contraseña de SQL</small></td><td><code>Server=miServidor;Database=miBase;User Id=usuario;Password=clave;</code><br><code>Data Source=190.190.200.100,1433;Initial Catalog=miBase;User ID=usuario;Password=clave;Encrypt=True;TrustServerCertificate=True;</code></td></tr>
+    <tr><td><b>Trusted Connection</b><br><small>usuario de Windows</small></td><td><code>Server=miServidor;Database=miBase;Trusted_Connection=True;</code><br><code>Data Source=miServidor;Initial Catalog=miBase;Integrated Security=True;</code></td></tr>
+  </table>
+  <div class="warn">Sinónimos: <b>Server = Data Source</b> · <b>Database = Initial Catalog</b> · <b>Trusted_Connection = Integrated Security</b> (autenticación de Windows). <code>TrustServerCertificate=True</code> acepta un certificado no emitido por una CA.</div>
+
+  <h2>Consola con ADO.NET</h2>
+  <div class="code" data-lang="csharp" data-title="ConsoleApp · listar TBL_SONG" data-id="c-lab1-console"></div>
+  <ul class="notes"><li data-n="1"><code>using var</code> libera la conexión al terminar. <code>OpenAsync</code> / <code>ExecuteReaderAsync</code> / <code>ReadAsync</code> son las versiones asíncronas. <code>IsDBNull</code> evita errores con valores nulos.</li></ul>
+</section>
+
+<!-- ============ LAB 2 ============ -->
+<section class="view" id="v-lab-2">
+  <span class="kicker k-lab">Laboratorio 2</span>
+  <h1>PoliMusic en ASP clásico</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>Generaste con WorkBuddy AI una app ASP clásico (VBScript) con login, lista de canciones con reproductor y logout, y luego la ampliaste con roles: solo el admin hace CRUD.</p></div>
+
+  <h2>Arquitectura de la app</h2>
+  <div class="flow">
+    <div class="node"><b>default.asp</b><small>¿hay sesión? → songs.asp : login.asp</small></div><div class="arr">→</div>
+    <div class="node"><b>login.asp</b><small>POST, valida con ADODB.Command, guarda Session</small></div><div class="arr">→</div>
+    <div class="node"><b>songs.asp</b><small>“Welcome usuario”, tabla y &lt;audio&gt;</small></div><div class="arr">→</div>
+    <div class="node"><b>logout.asp</b><small>Session.Abandon</small></div>
+  </div>
+
+  <h2>Datos técnicos del prompt (preguntables)</h2>
+  <div class="grid2">
+    <div class="card" style="font-size:14px"><b>Cadena OLE DB</b><br><code>Provider=MSOLEDBSQL;Data Source=localhost;Initial Catalog=BDD_PoliMusic;User Id=usr_polimusic;Password=Politecnica1;</code></div>
+    <div class="card" style="font-size:14px"><b>Reutilizar la conexión</b><br><code>conn.asp</code> con <code>GetConnection()</code> que devuelve un <code>ADODB.Connection</code>, incluido con <code>&lt;!--#include file="conn.asp"--&gt;</code></div>
+    <div class="card" style="font-size:14px"><b>Seguridad</b><br>Consultas con <code>ADODB.Command</code> y parámetros; todo lo que se muestra pasa por <code>Server.HTMLEncode</code>.</div>
+    <div class="card" style="font-size:14px"><b>Otros</b><br><code>CodePage 65001</code> (UTF-8) · ruta <code>~/songFiles/a.mp3</code> → <code>songFiles/a.mp3</code> · recorrido con <code>Do While Not rs.EOF</code></div>
+  </div>
+
+  <h2>Roles y CRUD (tu versión)</h2>
+  <div class="code" data-lang="vbscript" data-title="mysongs.asp · sesión y roles" data-id="c-lab2-roles"></div>
+  <ul class="notes">
+    <li data-n="1">El rol se lee de la BD: <code>USER_TYPE</code> 1 = admin, 0 = normal.</li>
+    <li data-n="2">El permiso se valida <b>en el servidor</b>, no solo ocultando botones.</li>
+    <li data-n="3">Los botones de CRUD solo se pintan con <code>&lt;% If psIsAdmin Then %&gt;</code>.</li>
+  </ul>
+  <div class="warn">Repo: <code>github.com/Blurryfacce/AppWebAvProanoIsaac</code>, carpeta <code>webapppolimusicv1_asp</code>, commit “First version, WebApp with ASP 1.0”.</div>
+</section>
+
+<!-- ============ LAB 3 ============ -->
+<section class="view" id="v-lab-3">
+  <span class="kicker k-lab">Laboratorio 3</span>
+  <h1>Web app monolítica en .NET Framework 2.0</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>Un solo proyecto Web Forms (WebAppPoliMusicV2) con .NET Framework 2.0. Separaste el código en carpetas Entities, Util, DAL y BLL, pero todo vive y se despliega en un único proyecto: es un monolito de una capa física.</p></div>
+
+  <h2>Estructura del proyecto</h2>
+  <div class="stack" style="max-width:640px">
+    <div class="mono-box" style="border-color:#0f9d8a;background:#e0f5f1">
+      <div class="lbl" style="color:#0b7a6b"><span>WebAppPoliMusicV2 (un solo proyecto)</span><span>.NET Framework 2.0</span></div>
+      <div class="grid3" style="gap:8px">
+        <div class="layer"><b>Entities/</b><small>User.cs (propiedades)</small></div>
+        <div class="layer"><b>Util/</b><small>Constants.cs, Hash.cs</small></div>
+        <div class="layer"><b>DAL/</b><small>User.cs, Song.cs (SQL)</small></div>
+        <div class="layer"><b>BLL/</b><small>User.cs, Song.cs (reglas)</small></div>
+        <div class="layer"><b>Páginas .aspx</b><small>Login, SignUp, Song, Logout, Default</small></div>
+        <div class="layer"><b>Web.config</b><small>conexión, auth, rutas</small></div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:14px">Solución <code>SlnAppPoliMusic.slnx</code>, carpeta virtual <code>WebAppPoliMusicV2_ASPX_F2.0</code>. Se desmarca HTTPS al crear el proyecto. Assets: AlbumImages, ArtistImages, PlaylistImages, SongFiles, UserImages.</p>
+
+  <h2>Cómo fluye una petición</h2>
+  <div class="flow">
+    <div class="node"><b>Login.aspx.cs</b><small>BtnLogin_Click</small></div><div class="arr">→</div>
+    <div class="node"><b>BLL.User</b><small>AuthenticateUser()</small></div><div class="arr">→</div>
+    <div class="node"><b>DAL.User</b><small>SELECT … WHERE USERNAME = @USERNAME</small></div><div class="arr">→</div>
+    <div class="node"><b>SQL Server</b><small>TBL_USER</small></div>
+  </div>
+  <p style="font-size:14px">La BLL solo llama a la DAL; también valida duplicados (“Username already registered!”, “Email already used!”).</p>
+
+  <h2>Conceptos clave del código</h2>
+  <div class="grid2">
+    <div class="card" style="font-size:14px"><b>Code-behind</b><br>Cada .aspx tiene diseño (HTML) y code-behind (C#). Atajos: <b>F7</b> va al código, <b>Shift+F7</b> al diseño.</div>
+    <div class="card" style="font-size:14px"><b>IsPostBack</b><br><code>if (!Page.IsPostBack)</code>: solo en la primera carga, no al enviar el formulario.</div>
+    <div class="card" style="font-size:14px"><b>#if DEBUG</b><br>Precarga usuario y clave solo en modo depuración.</div>
+    <div class="card" style="font-size:14px"><b>Session</b><br>El usuario se guarda en <code>Session[Constants.USER]</code>; USER_TYPE 0 → Default, 1 → DesktopAdmin.</div>
+    <div class="card" style="font-size:14px"><b>Forms Authentication</b><br><code>FormsAuthentication.RedirectFromLoginPage</code> al entrar, <code>FormsAuthentication.SignOut()</code> al salir.</div>
+    <div class="card" style="font-size:14px"><b>Hash</b><br>La clave se compara como <b>SHA1</b> en hexadecimal (<code>GeneratePasswordHash</code>). También existe <code>HashPassword</code> con PBKDF2 + salt.</div>
+    <div class="card" style="font-size:14px"><b>Controles de servidor</b><br><code>asp:TextBox</code>, <code>asp:Button OnClick</code>, <code>asp:Label</code>, <code>asp:FileUpload</code>, <code>asp:GridView</code>, todos con <code>runat="server"</code>.</div>
+    <div class="card" style="font-size:14px"><b>FileManagement</b><br>Valida imágenes JPG/PNG ≤ 10 MB y canciones MP3; <code>Server.MapPath</code> convierte rutas virtuales a físicas.</div>
+  </div>
+
+  <h2>Web.config (lo más preguntable)</h2>
+  <div class="code" data-lang="xml" data-title="Web.config (resumen)" data-id="c-webconfig"></div>
+  <table>
+    <tr><th>Sección</th><th>Para qué</th></tr>
+    <tr><td><code>appSettings</code></td><td>Valores de la app (rutas de imágenes, tamaño máximo de canción)</td></tr>
+    <tr><td><code>connectionStrings</code></td><td>Cadena de conexión; se lee con <code>ConfigurationManager.ConnectionStrings["…"]</code></td></tr>
+    <tr><td><code>authentication mode="Forms"</code></td><td>Login propio: <code>loginUrl</code>, <code>defaultUrl</code>, <code>timeout</code> en minutos</td></tr>
+    <tr><td><code>&lt;deny users="?"/&gt;</code></td><td><mark><b>? = usuarios anónimos</b></mark>: se les niega el acceso</td></tr>
+    <tr><td><code>&lt;allow users="*"/&gt;</code> en <code>location</code></td><td><mark><b>* = todos</b></mark>: SignUp.aspx es accesible sin login</td></tr>
+    <tr><td><code>httpRuntime maxRequestLength</code> / <code>requestLimits maxAllowedContentLength</code></td><td>Tamaño máximo de subida (KB / bytes)</td></tr>
+  </table>
+
+  <h2>Song.aspx</h2>
+  <ul>
+    <li><code>asp:GridView</code> con <code>BoundField</code> (columnas de datos) y <code>TemplateField</code> (el <code>&lt;audio&gt;</code>), <code>DataKeyNames="ID_SONG"</code>, <code>EmptyDataTemplate</code>.</li>
+    <li>Datos con <code>gvSongs.DataSource = dt; gvSongs.DataBind();</code> y numeración en <code>RowDataBound</code>.</li>
+    <li>El JS hace <code>fetch('Song.aspx?play=id')</code> para sumar reproducciones: <b>AJAX</b> hacia el mismo Page_Load.</li>
+    <li>SQL con <code>STUFF(... FOR XML PATH(''))</code> para concatenar los álbumes y <code>LIKE @SONG_NAME</code> para buscar.</li>
+  </ul>
+  <div class="warn">Git: ignorar <code>.user</code>, <code>.vs</code>, <code>packages</code>, <code>bin</code>, <code>obj</code>. Commit “Second WebApp Monolithic One Layer with .NetFramework 2.0”. “Set as Startup Project” y “Set As Start Page” en Default.aspx.</div>
+</section>
+
+<!-- ============ LAB 4 ============ -->
+<section class="view" id="v-lab-4">
+  <span class="kicker k-lab">Laboratorio 4</span>
+  <h1>Web app N-Tier en .NET Framework 4.8</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>La misma app, pero ahora cada capa es un proyecto separado (bibliotecas de clases) con referencias entre ellos. La presentación nunca toca la DAL.</p></div>
+
+  <h2>Los 4 proyectos y sus referencias</h2>
+  <div class="stack" style="max-width:600px">
+    <div class="layer" style="border-color:var(--u1)"><b>WebAppPoliMusicV3</b><small>Presentación · ASP.NET Web Forms 4.8 · referencia BLL + EntityLayer</small></div>
+    <div class="down">▼</div>
+    <div class="layer" style="border-color:var(--u1)"><b>BLL.PoliMusicV3</b><small>Lógica de negocio · Class Library (.NET Framework) · referencia DAL + EntityLayer</small></div>
+    <div class="down">▼</div>
+    <div class="layer" style="border-color:var(--u1)"><b>DAL.PoliMusicV3</b><small>Acceso a datos · Class Library (.NET Framework) · referencia EntityLayer</small></div>
+    <div class="down">▼</div>
+    <div class="layer"><b>SQL Server · BDD_PoliMusic</b></div>
+  </div>
+  <div class="card" style="max-width:600px;margin:0 auto;font-size:14px"><b>EntityLayer.PoliMusicV3</b> (entidades, Util, Hash) la usan todas las capas.</div>
+  <div class="exam"><h4>★ Regla de oro</h4><ul><li>Desde la presentación <b>jamás</b> se accede a la DAL: rompería la arquitectura N-Layer.</li><li>Se usa “Class Library (<b>.NET Framework</b>)”, no la “Class Library” multiplataforma.</li></ul></div>
+
+  <h2>Teoría del lab</h2>
+  <ul>
+    <li><b>Estilo de arquitectura</b>: conjunto de principios, patrones y reglas que definen cómo se organiza, estructura y comunica un sistema.</li>
+    <li><b>N-Tier / Layered</b>: separa responsabilidades en capas independientes para facilitar mantenimiento, escalabilidad y reutilización.</li>
+    <li>Capas: Presentación · Aplicación o Lógica de negocio · Acceso a datos · <b>Entidades/Modelo</b> (a veces se cuenta dentro de la de negocio).</li>
+  </ul>
+
+  <h2>Lo que trae la plantilla Web Forms 4.8</h2>
+  <div class="grid3">
+    <div class="card" style="font-size:14px"><b>Master Page</b><br><code>Site.Master</code>: plantilla común (menú, barra). Las páginas usan <code>MasterPageFile</code> y <code>asp:Content ContentPlaceHolderID="MainContent"</code>.</div>
+    <div class="card" style="font-size:14px"><b>FriendlyURLs</b><br>URLs sin extensión: <code>Login</code> en vez de <code>Login.aspx</code> (por eso el Web.config usa <code>loginUrl="Login"</code>).</div>
+    <div class="card" style="font-size:14px"><b>Bootstrap, jQuery, Modernizr, Ajax</b><br>Librerías incluidas por defecto; se agrupan con <code>System.Web.Optimization</code> (bundling).</div>
+  </div>
+  <p style="font-size:14px">También se podía crear el proyecto vacío, con <b>MVC</b> o como <b>Web API</b>. Menú agregado en Site.Master: “Canciones” y “Cerrar Sesión”, y la marca “PoliMusic - Nombre.Apellido”.</p>
+  <div class="warn">Commit “Third WebApp N-Tier” (o similar) con los 4 proyectos. Compilación correcta: “4 correctos, 0 erróneos”.</div>
+</section>
+
+<!-- ============ LAB 5 ============ -->
+<section class="view" id="v-lab-5">
+  <span class="kicker k-lab">Laboratorio 5</span>
+  <h1>Chat en tiempo real con WebSocket</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>Un chat con Express + ws: el servidor recibe un mensaje JSON y lo reenvía a todos los clientes conectados (broadcasting). Luego una versión v2 estilo WhatsApp hecha con IA.</p></div>
+
+  <h2>Comandos</h2>
+  <div class="code" data-lang="bash" data-title="crear y ejecutar" data-id="c-lab5-cmd"></div>
+  <table>
+    <tr><th>Comando</th><th>Cuándo</th></tr>
+    <tr><td><code>node index.js</code></td><td>Forma genérica en desarrollo</td></tr>
+    <tr><td><code>npm start</code></td><td>Test o producción (script <code>"start": "node index.js"</code>)</td></tr>
+    <tr><td><code>npm run dev</code></td><td>Desarrollo con reinicio automático (<code>"dev": "node --watch index.js"</code>)</td></tr>
+  </table>
+  <div class="warn">Si PowerShell bloquea scripts: <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code>. La carpeta <b>node_modules no se versiona</b>. Dependencias en package.json: <code>express ^5</code>, <code>ws ^8</code>.</div>
+
+  <h2>Servidor y cliente</h2>
+  <div class="code" data-lang="javascript" data-title="index.js" data-id="c-lab5-server"></div>
+  <div class="code" data-lang="javascript" data-title="public/index.html · script del cliente" data-id="c-lab5-client"></div>
+  <ul class="notes">
+    <li data-n="1"><b>Broadcasting (difusión)</b>: en <code>ws.on('message')</code> se reenvía a todos los clientes con conexión abierta.</li>
+    <li data-n="2"><code>clients</code> es un <code>Set</code>: <code>add</code> al conectar, <code>delete</code> en <code>close</code> y <code>error</code>.</li>
+    <li data-n="3">El cliente se reconecta solo: <code>setTimeout(connect, 3000)</code> en <code>onclose</code>.</li>
+    <li data-n="4">Es un proyecto “monolítico”: frontend (<code>public/</code>) y backend (<code>index.js</code>) juntos.</li>
+    <li data-n="5">En DevTools → <b>Network</b> se ve la conexión WebSocket abierta; en <b>Console</b> los datos.</li>
+  </ul>
+
+  <h2>Chat v2 (requisitos que pidió el lab)</h2>
+  <div class="grid2">
+    <div class="card" style="font-size:14px">Mensajes recibidos a la izquierda con nombre; enviados a la derecha; hora en JSON</div>
+    <div class="card" style="font-size:14px">Paleta con variables CSS (<code>--color-fondo</code>, <code>--color-burbuja</code>…), responsive</div>
+    <div class="card" style="font-size:14px">Modo claro/oscuro recordado con <b>localStorage</b></div>
+    <div class="card" style="font-size:14px">HTML, CSS y JS en archivos separados</div>
+    <div class="card" style="font-size:14px">Estado conectado / desconectado / reconectando (backoff exponencial)</div>
+    <div class="card" style="font-size:14px">“X se unió/salió”, contador de usuarios, “escribiendo…”</div>
+    <div class="card" style="font-size:14px">Rechazar mensajes vacíos o de más de 500 caracteres (cliente y servidor)</div>
+    <div class="card" style="font-size:14px">Mensajes con campo <code>type</code>: join, message, typing / welcome, system, error</div>
+  </div>
+  <div class="warn">+1 punto opcional: autenticación con Firebase, guardar chats en Firestore, JWT, aceptar solo un dominio, variables en <code>.env</code>.</div>
+</section>
+
+<!-- ============ LAB 6 ============ -->
+<section class="view" id="v-lab-6">
+  <span class="kicker k-lab">Laboratorio 6</span>
+  <h1>WebSocket seguro con JWT</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>Generaste un certificado con OpenSSL, levantaste un servidor HTTPS + WSS en el puerto 5000 con rutas /auth y /ws, y el chat solo acepta clientes con un JWT válido.</p></div>
+
+  <h2>Flujo completo</h2>
+  <div class="flow">
+    <div class="node"><b>1 · Login</b><small>fetch <code>/auth?username=…&amp;password=…</code></small></div><div class="arr">→</div>
+    <div class="node"><b>2 · jwt.sign</b><small>{ sub, username }, expira en 900 s</small></div><div class="arr">→</div>
+    <div class="node"><b>3 · WSS</b><small><code>wss://localhost:5000/ws?token=…</code></small></div><div class="arr">→</div>
+    <div class="node" style="border-color:var(--ok)"><b>4 · jwt.verify</b><small>válido: entra · inválido: <code>ws.close()</code></small></div>
+  </div>
+
+  <h2>Certificado con OpenSSL (Windows)</h2>
+  <div class="code" data-lang="bash" data-title="cmd.exe" data-id="c-lab6-openssl"></div>
+  <ul class="notes">
+    <li data-n="1"><code>OPENSSL_CONF</code> apunta al archivo de configuración <code>openssl.cnf</code> de la versión portable.</li>
+    <li data-n="2"><b>rsa:4096</b> = clave RSA de 4096 bits; <code>-days 365</code>; <code>-nodes</code> = sin contraseña.</li>
+    <li data-n="3">Datos: EC, Pichincha, Quito, EPN, FIS, <b>Common Name = localhost</b>.</li>
+    <li data-n="4">Resultado: <code>cert.pem</code> y <code>key.pem</code>, copiados a <code>backend/</code>.</li>
+  </ul>
+
+  <h2>Estructura y paquetes</h2>
+  <div class="grid2">
+    <div class="card" style="font-size:14px"><b>Carpetas</b><br><code>LabWebAv-WebSocketChatSeguroJWT/frontend</code> (index.html, script.js, style.css)<br><code>…/backend</code> (index.js, cert.pem, key.pem)</div>
+    <div class="card" style="font-size:14px"><b>Paquetes</b><br><code>npm install express ws jsonwebtoken</code><br>Ejecutar: <code>node --watch index.js</code></div>
+  </div>
+
+  <h2>Servidor</h2>
+  <div class="code" data-lang="javascript" data-title="backend/index.js (partes clave)" data-id="c-lab6-server"></div>
+  <ul class="notes">
+    <li data-n="1">El WSS se monta en la ruta <b><code>/ws</code></b>: <code>new WebSocket.Server({ server, path: '/ws' })</code>.</li>
+    <li data-n="2">El token se saca de la URL con <code>url.parse(req.url, true).query.token</code>.</li>
+    <li data-n="3">En cada mensaje se vuelve a verificar el token de cada cliente: si expiró, recibe “Error: Your token is no longer valid” y se cierra.</li>
+    <li data-n="4"><code>expiresIn: 900</code> = <b>15 minutos</b> (buena práctica de expiración corta).</li>
+    <li data-n="5"><code>/userInfo</code> devuelve datos del usuario solo con un token válido (<code>decodedToken.sub</code>).</li>
+  </ul>
+
+  <h2>Pruebas y depuración</h2>
+  <ul>
+    <li>Se abre <code>https://localhost:5000</code> en el navegador (no con Live Server). Aparece “la conexión no es privada” porque el certificado es <b>autofirmado</b>, no lo emitió una <b>CA</b> → “Avanzado” → “Continuar a localhost”.</li>
+    <li>DevTools → Network → <b>WS</b>: en las cabeceras se confirma <code>wss</code>.</li>
+    <li>Depurar el cliente: F12 → <b>Sources</b> → breakpoint en script.js. <b>F10</b> = siguiente línea, <b>F8</b> = continuar.</li>
+    <li>Depurar el servidor: VS Code → <b>Run and Debug</b> → Node.js, con breakpoint en index.js.</li>
+  </ul>
+</section>
+
+<!-- ============ LAB 7 ============ -->
+<section class="view" id="v-lab-7">
+  <span class="kicker k-lab">Laboratorio 7</span>
+  <h1>Chat con Socket.IO</h1>
+  <div class="card idea"><b class="t">Lo que hiciste</b><p>El mismo chat, pero con Socket.IO: una biblioteca que es una capa de abstracción sobre WebSockets y trabaja con eventos con nombre.</p></div>
+
+  <div class="code" data-lang="bash" data-title="terminal" data-id="c-lab7-cmd"></div>
+  <div class="code" data-lang="javascript" data-title="index.js" data-id="c-lab7-server"></div>
+  <div class="code" data-lang="html" data-title="public/index.html" data-id="c-lab7-client"></div>
+
+  <h2>Lo importante</h2>
+  <div class="grid2">
+    <div class="card" style="font-size:14px"><b><code>io.emit('mensaje', …)</code></b><br>Envía el evento a <b>todos</b> los clientes conectados, incluido el que lo originó: <b>broadcasting</b>.</div>
+    <div class="card" style="font-size:14px"><b><code>socket.emit</code> / <code>socket.on</code></b><br>El cliente emite el evento “mensaje” y escucha el mismo nombre de evento.</div>
+    <div class="card" style="font-size:14px"><b><code>/socket.io/socket.io.js</code></b><br>No está en <code>public/</code>: el propio servidor Socket.IO entrega la biblioteca cliente, que define <code>io()</code>.</div>
+    <div class="card" style="font-size:14px"><b><code>textContent</code> vs <code>innerHTML</code></b><br>Con textContent, un <code>&lt;script&gt;</code> se muestra como texto y no se ejecuta: evita <b>XSS (Cross-Site Scripting)</b>.</div>
+    <div class="card" style="font-size:14px"><b>Servidor</b><br><code>http.createServer(app)</code> + <code>new Server(server)</code> (de <code>require('socket.io')</code>).</div>
+    <div class="card" style="font-size:14px"><b>Postman</b><br>New → <b>Socket.IO</b> → <code>http://localhost:3000</code> → Connect → Events: escuchar “mensaje” → enviar JSON <code>{"username":"Postman","text":"Postman aquí"}</code>.</div>
+  </div>
+
+  <h2>WebSocket (ws) vs Socket.IO</h2>
+  <table>
+    <tr><th></th><th>ws (Lab 5)</th><th>Socket.IO (Lab 7)</th></tr>
+    <tr><td>Qué es</td><td>Implementación del protocolo WebSocket</td><td>Biblioteca de abstracción sobre WebSocket</td></tr>
+    <tr><td>Mensajes</td><td>Texto o JSON a mano (<code>JSON.stringify</code>)</td><td>Eventos con nombre y objetos directos</td></tr>
+    <tr><td>Broadcast</td><td>Recorrer clientes y <code>send</code></td><td><code>io.emit</code></td></tr>
+    <tr><td>Reconexión</td><td>Programarla tú (<code>setTimeout</code>)</td><td>Automática</td></tr>
+    <tr><td>Cliente</td><td><code>new WebSocket(url)</code> del navegador</td><td><code>io()</code> desde <code>/socket.io/socket.io.js</code></td></tr>
+  </table>
+</section>
+
+<!-- ============ MATERIAL ============ -->
+<section class="view" id="v-material">
+  <span class="kicker k-x">Material original</span>
+  <h1>PDFs de clase y laboratorios</h1>
+  <p class="lead">Los archivos originales, por si necesitas ver una diapositiva o captura exacta.</p>
+  <h2>Clases</h2>
+  <div class="card filelist" id="files-clases" style="padding:0"></div>
+  <h2>Laboratorios</h2>
+  <div class="card filelist" id="files-labs" style="padding:0"></div>
+</section>
+
+<!-- ============ SIGLAS ============ -->
+<section class="view" id="v-siglas">
+  <span class="kicker k-x">Práctica · recuerdo activo</span>
+  <h1>Flashcards de siglas</h1>
+  <p class="lead">Mira la sigla, di en voz alta qué significa y luego voltea la tarjeta. Las que marques “Repasar” vuelven a salir.</p>
+  <div class="chips" id="fc-filter"></div>
+  <div class="fc-wrap">
+    <div class="fc" id="fc"><div class="fc-inner">
+      <div class="fc-face fc-front"><div class="s" id="fc-s"></div><small>clic o espacio para voltear</small></div>
+      <div class="fc-face fc-back"><div class="m" id="fc-m"></div><div class="c" id="fc-c"></div></div>
+    </div></div>
+    <div class="fc-ctrl">
+      <button class="btn b-no" id="fc-no">Repasar (R)</button>
+      <button class="btn b-ok" id="fc-ok">La sé (S)</button>
+      <button class="btn b-n" id="fc-reset">Reiniciar</button>
+    </div>
+    <div class="fc-stats" id="fc-stats"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="view" id="v-quiz">
+  <span class="kicker k-x">Práctica · autoevaluación</span>
+  <h1>Quiz de examen</h1>
+  <p class="lead">Las 10 primeras son las preguntas oficiales del PDF de monolíticos. Al responder ves si acertaste y por qué.</p>
+  <div class="qtop">
+    <span class="score" id="qscore">0 / 0</span>
+    <button class="btn b-n" id="q-fail">Solo falladas</button>
+    <button class="btn b-n" id="q-all">Ver todas</button>
+    <button class="btn b-n" id="q-reset">Reiniciar</button>
+  </div>
+  <div id="qlist"></div>
+</section>
+
+<!-- ============ ABIERTAS ============ -->
+<section class="view" id="v-abiertas">
+  <span class="kicker k-x">Práctica · técnica Feynman</span>
+  <h1>Preguntas abiertas</h1>
+  <p class="lead">Respóndelas en voz alta o en papel antes de abrir la respuesta modelo.</p>
+  <div id="open"></div>
+</section>
+</main>
+</div>
+
+<!-- ============ CÓDIGO (texto plano) ============ -->
+<script type="text/plain" id="c-asp-hello"><html>
+<body>
+<% Response.Write ("Hello EPN FIS") %>
+</body>
+</html></script>
+<script type="text/plain" id="c-asp-vars"><%
+Option Explicit
+Dim mensaje, numero, fecha, esValido
+mensaje = "Hola mundo"      ' String
+numero = 42                 ' Integer
+fecha = #04/29/2025#        ' Date
+esValido = True             ' Boolean
+Response.Write("Mensaje: " & mensaje & "<br>")
+numero = "Ahora soy texto"  ' Variant: puede cambiar de tipo
+
+' Variables de sesión: disponibles en todas las páginas
+Session("username") = "EPN FIS"
+Session("age") = 150
+%>
+Welcome <%= Session("username") %></script>
+<script type="text/plain" id="c-asp-ctrl"><%
+i = hour(time)
+If i < 10 Then
+  response.write("Good morning!")
+Else
+  response.write("Have a nice day!")
+End If
+
+d = weekday(date)
+Select Case d
+  Case 1
+    response.write("Sleepy Sunday")
+  Case Else
+    response.write("Otro día")
+End Select
+
+For i = 0 To 5
+  response.write("The number is " & i & "<br />")
+Next
+
+Dim cars(2)            ' 3 posiciones: 0, 1, 2
+cars(0) = "Volvo" : cars(1) = "Saab" : cars(2) = "BMW"
+For Each x In cars
+  response.write(x & "<br />")
+Next
+%></script>
+<script type="text/plain" id="c-asp-form"><!-- formulario.html -->
+<form method="post" action="procesar.asp">
+  Nombre: <input type="text" name="nombre"><br>
+  Edad: <input type="text" name="edad"><br>
+  <input type="submit" value="Enviar">
+</form>
+
+<!-- procesar.asp -->
+<%
+Dim nombre, edad
+nombre = Request.Form("nombre")     ' POST -> Request.Form
+edad = Request.Form("edad")         ' GET  -> Request.QueryString
+Response.Write "Hola, " & nombre & ". Tienes " & edad & " años."
+%></script>
+<script type="text/plain" id="c-cpp">class MasterFile {
+private:
+    FileOfUpdates* fileUpdates;   // composición: "tiene"
+    MasterRecord*  masterRecord;
+    UpdateToCard*  updateCard;
+public:
+    MasterFile() {                // constructor
+        fileUpdates  = new FileOfUpdates();
+        masterRecord = new MasterRecord();
+        updateCard   = new UpdateToCard();
+    }
+    ~MasterFile() {               // destructor: libera memoria
+        delete fileUpdates; delete masterRecord; delete updateCard;
+    }
+    void processUpdate() {
+        std::string data = fileUpdates->getFormattedUpdate();
+        if (masterRecord->getPutCreate(data)) updateCard->match(data);
+    }
+};</script>
+<script type="text/plain" id="c-demo1"><%
+If Request.Form("accion") = "procesar" Then
+  Dim startTime, currentTime
+  startTime = Timer
+  Do
+    currentTime = Timer
+    If currentTime < startTime Then currentTime = currentTime + 86400
+  Loop While (currentTime - startTime) < 10
+  mensaje = "¡Procesamiento finalizado después de 10 segundos!"
+End If
+%>
+<form method="post" action="demo1.asp" onsubmit="mostrarProcesando()">
+  <input type="hidden" name="accion" value="procesar" />
+  <button type="submit">Iniciar proceso</button>
+</form></script>
+<script type="text/plain" id="c-demo2js">function llamarASP() {
+  const resultado = document.getElementById("resultado");
+  resultado.innerText = "Procesando... espere 10 segundos.";
+  fetch("demo2.asp", {
+    method: "GET",
+    headers: { "X-Requested-With": "XMLHttpRequest" }
+  })
+    .then(response => response.text())
+    .then(data => { resultado.innerText = data; })
+    .catch(error => { resultado.innerText = "Error: " + error; });
+}</script>
+<script type="text/plain" id="c-demo2asp"><%
+If Request.ServerVariables("HTTP_X_REQUESTED_WITH") = "XMLHttpRequest" Then
+  ' ... espera de 10 segundos con Timer ...
+  Response.ContentType = "text/plain"
+  Response.Write "¡Procesamiento finalizado tras 10 segundos!"
+  Response.End
+End If
+%></script>
+<script type="text/plain" id="c-demo3js">$(document).ready(function () {
+  $("#updateButton").click(function () {
+    $.ajax({
+      url: "Demo3.aspx?action=getTime",
+      type: "GET",
+      success: function (data) { $("#currentTime").text(data); },
+      error: function () { $("#currentTime").text("Error retrieving time"); }
+    });
+  });
+});</script>
+<script type="text/plain" id="c-demo3cs">protected void Page_Load(object sender, EventArgs e)
+{
+    if (Request.QueryString["action"] == "getTime")
+    {
+        Response.Clear();
+        Response.ContentType = "text/plain";
+        Response.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        Response.End();
+    }
+}</script>
+<script type="text/plain" id="c-npm">npm init -y
+npm install express
+node index.js</script>
+<script type="text/plain" id="c-lp-server">const express = require('express');
+const app = express();
+const port = 3000;
+let clients = [];                       // respuestas retenidas
+
+// CORS solo para pruebas locales
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+// Endpoint de long polling: guarda res, NO responde
+app.get('/events', (req, res) => {
+  console.log('Cliente conectado, esperando datos...');
+  clients.push(res);
+  req.on('close', () => {
+    clients = clients.filter(client => client !== res);
+  });
+});
+
+// Cada 10 s responde a todos los que esperan
+setInterval(() => {
+  clients.forEach(res => {
+    res.json({ message: '¡Nuevo evento en el servidor!', timestamp: new Date() });
+  });
+  clients = [];                          // cada res se usa una sola vez
+}, 10000);
+
+app.listen(port, () => console.log(`Servidor Long Polling en http://localhost:${port}`));</script>
+<script type="text/plain" id="c-lp-client">function recibirEventos() {
+  fetch('http://localhost:3000/events')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('eventos').innerHTML +=
+        `<p>${data.timestamp} - ${data.message}</p>`;
+      recibirEventos();                  // reabre la petición
+    })
+    .catch(err => {
+      console.error('Error en long polling:', err);
+      setTimeout(recibirEventos, 5000);  // reintenta en 5 s
+    });
+}
+recibirEventos();</script>
+<script type="text/plain" id="c-openssl">openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365
+# req -x509        certificado autofirmado
+# -newkey rsa:2048 clave RSA de 2048 bits
+# -nodes           clave privada sin contraseña
+# -days 365        vigencia de un año</script>
+<script type="text/plain" id="c-wss">const https = require('https');
+const WebSocket = require('ws');
+const fs = require('fs');
+
+const serverOptions = {
+  cert: fs.readFileSync('cert.pem'),   // público
+  key: fs.readFileSync('key.pem')      // privado
+};
+
+const server = https.createServer(serverOptions);   // HTTPS
+const wss = new WebSocket.Server({ server });         // WSS sobre HTTPS
+server.listen(8080);</script>
+<script type="text/plain" id="c-jwt">// Cliente
+const token = localStorage.getItem('jwt');
+const ws = new WebSocket(`wss://ejemplo.com:8080?token=${token}`);
+
+// Servidor
+wss.on('connection', (ws, req) => {
+  const token = new URL(req.url, 'wss://ejemplo.com').searchParams.get('token');
+  try {
+    const decoded = jwt.verify(token, 'secreto');
+    ws.userId = decoded.sub;
+    console.log(`Usuario ${ws.userId} conectado`);
+  } catch (error) {
+    ws.close(1008, 'Token inválido');   // 1008 = Policy Violation
+  }
+});</script>
+
+<script type="text/plain" id="c-bcp"># Exportar una tabla a CSV (out) usando el contenedor (puerto 14333)
+bcp BDD_PoliMusic.dbo.TBL_SONG out canciones.csv -c -t, -S localhost,14333 -U sa -P Politecnica1
+
+# Importar un archivo a una tabla (in)
+bcp BDD_PoliMusic.dbo.TBL_SONG in canciones.csv -c -t, -S localhost,14333 -U sa -P Politecnica1
+
+# -c  formato de caracteres   -t,  separador de campos (coma)
+# -S  servidor   -U / -P  usuario y contraseña   -T  conexión de confianza (Windows)</script>
+<script type="text/plain" id="c-docker">docker pull mcr.microsoft.com/mssql/server:2025-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Politecnica1" -e "MSSQL_PID=Express" -p 14333:1433 --name sql-server2025 --hostname sql-server2025 -d mcr.microsoft.com/mssql/server:2025-latest
+
+docker ps          # lista los contenedores en ejecución (CONTAINER ID aleatorio)
+
+# Verificar el puerto
+Test-NetConnection localhost -Port 14333</script>
+<script type="text/plain" id="c-lab1-console">using Microsoft.Data.SqlClient;   // o System.Data.SqlClient en .NET Framework
+
+string connectionString = "Server=localhost,14333;Database=BDD_PoliMusic;User Id=usr_polimusic;Password=Politecnica1;TrustServerCertificate=True;";
+try
+{
+    using var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync();
+
+    using var command = connection.CreateCommand();
+    command.CommandText = "SELECT * FROM TBL_SONG";
+
+    using var reader = await command.ExecuteReaderAsync();
+
+    for (int i = 0; i < reader.FieldCount; i++)          // cabeceras
+    {
+        Console.Write(reader.GetName(i));
+        if (i < reader.FieldCount - 1) Console.Write('\t');
+    }
+    Console.WriteLine();
+
+    while (await reader.ReadAsync())                     // filas
+    {
+        for (int i = 0; i < reader.FieldCount; i++)
+        {
+            var value = reader.IsDBNull(i) ? "NULL" : reader.GetValue(i).ToString();
+            Console.Write(value);
+            if (i < reader.FieldCount - 1) Console.Write('\t');
+        }
+        Console.WriteLine();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}</script>
+<script type="text/plain" id="c-lab2-roles"><%
+' Si no hay usuario en sesión, vuelve al login
+psUser = Trim(Session("Username") & "")
+If psUser = "" Then
+    Response.Redirect "login.asp"
+    Response.End
+End If
+
+' Rol leído de la base: USER_TYPE 1 = ADMIN, 0 = USER (normal)
+Set psUserRs = PS_Cmd("SELECT USER_TYPE FROM TBL_USER WHERE USERNAME = ?", Array(CStr(psUser))).Execute
+If Not psUserRs.EOF Then psIsAdmin = (CLng(psUserRs(0)) = PS_ADMIN_TYPE)
+
+' Solo el admin puede crear, editar o borrar (validado en el servidor)
+If Not psIsAdmin Then
+    PS_Flash "error", "Only the admin role can create, edit or delete songs."
+    PS_Back
+End If
+
+Select Case psAction
+    Case "add"
+        PS_Run "INSERT INTO TBL_SONG (SONG_NAME, SONG_PATH, PLAYS) VALUES (?, ?, 0)", Array(psName, psFile)
+    Case "edit"
+        PS_Run "UPDATE TBL_SONG SET SONG_NAME = ?, SONG_PATH = ?, PLAYS = ? WHERE ID_SONG = ?", Array(psName, psFile, psPlays, psId)
+    Case "delete"
+        PS_Run "DELETE FROM TBL_SONG WHERE ID_SONG = ?", Array(psId)
+End Select
+%></script>
+<script type="text/plain" id="c-webconfig"><configuration>
+  <appSettings>
+    <add key="maxSongLength" value="52428800" />          <!-- 50 MB en bytes -->
+    <add key="userPhotoPath" value="~/userImages/" />
+  </appSettings>
+  <connectionStrings>
+    <add name="BDD_PoliMusicConnectionString"
+         connectionString="Data Source=localhost;Initial Catalog=BDD_PoliMusic;User ID=usr_polimusic;Password=Politecnica1"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <system.web>
+    <compilation debug="true" />
+    <httpRuntime maxRequestLength="51200" />              <!-- 50 MB en KB -->
+    <authentication mode="Forms">
+      <forms loginUrl="Login.aspx" defaultUrl="Default.aspx" timeout="20" />
+    </authentication>
+    <authorization>
+      <deny users="?" />                                  <!-- ? = anónimos -->
+    </authorization>
+  </system.web>
+  <location path="SignUp.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*" />                               <!-- * = todos -->
+      </authorization>
+    </system.web>
+  </location>
+</configuration></script>
+<script type="text/plain" id="c-lab5-cmd">mkdir LabWebAv-WebSocketChat
+cd LabWebAv-WebSocketChat
+code .
+npm init -y
+npm install express ws
+
+# package.json → "scripts": { "start": "node index.js", "dev": "node --watch index.js" }
+npm run dev</script>
+<script type="text/plain" id="c-pr-ws-cmd">mkdir chat && cd chat
+npm init -y
+npm install express ws
+mkdir public
+node index.js        # luego abrir http://localhost:3000 en 2 navegadores</script>
+<script type="text/plain" id="c-lab5-server">const express = require('express');
+const WebSocket = require('ws');
+const app = express();
+const port = 3000;
+
+app.use(express.static('public'));                 // sirve public/index.html
+
+const server = app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
+
+const wss = new WebSocket.Server({ server });      // WebSocket sobre el mismo servidor HTTP
+const clients = new Set();                         // conexiones activas
+
+wss.on('connection', (ws) => {
+  clients.add(ws);
+  console.log('Cliente conectado. Total:', clients.size);
+
+  ws.on('message', (data) => {
+    try {
+      const message = JSON.parse(data);
+      clients.forEach((client) => {              // broadcasting
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({
+            username: message.username,
+            text: message.text,
+            timestamp: new Date().toLocaleTimeString()
+          }));
+        }
+      });
+    } catch (error) {
+      console.error('Error procesando mensaje:', error);
+    }
+  });
+
+  ws.on('close', () => {
+    clients.delete(ws);
+    console.log('Cliente desconectado. Total:', clients.size);
+  });
+
+  ws.on('error', (error) => {
+    console.error('Error WebSocket:', error);
+    clients.delete(ws);
+  });
+});</script>
+<script type="text/plain" id="c-lab5-client">let ws;
+let connected = false;
+
+function connect() {
+  const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${protocol}//${location.host}`);
+
+  ws.onopen = () => {
+    connected = true;
+    status.textContent = 'Conectado';
+    sendBtn.disabled = false;
+  };
+  ws.onmessage = (event) => {
+    const msg = JSON.parse(event.data);
+    addMessage(msg.username, msg.text, msg.timestamp);
+  };
+  ws.onclose = () => {
+    connected = false;
+    status.textContent = 'Desconectado - Intentando reconectar...';
+    sendBtn.disabled = true;
+    setTimeout(connect, 3000);                     // reconexión
+  };
+  ws.onerror = (error) => console.error('Error WebSocket:', error);
+}
+
+function sendMessage() {
+  const username = usernameInput.value.trim();
+  const text = messageInput.value.trim();
+  if (!username || !text || !connected) return;   // validaciones
+  ws.send(JSON.stringify({ username, text }));
+  messageInput.value = '';
+}
+
+sendBtn.addEventListener('click', sendMessage);
+messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+connect();</script>
+<script type="text/plain" id="c-pr-ws-client"><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat WebSocket</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Chat WebSocket</h1>
+  <input id="usuario" placeholder="Tu nombre" maxlength="20">
+  <span id="estado">Desconectado</span>
+  <div id="mensajes"></div>
+  <input id="texto" placeholder="Escribe tu mensaje..." maxlength="500">
+  <button id="enviar">Enviar</button>
+
+  [[script>
+    const $ = (id) => document.getElementById(id);
+    let ws;
+
+    function conectar() {
+      const protocolo = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      ws = new WebSocket(`${protocolo}//${location.host}`);
+      ws.onopen = () => { $('estado').textContent = 'Conectado'; };
+      ws.onclose = () => { $('estado').textContent = 'Reconectando...'; setTimeout(conectar, 3000); };
+      ws.onmessage = (e) => {
+        const m = JSON.parse(e.data);
+        const div = document.createElement('div');
+        div.className = m.username === $('usuario').value ? 'propio' : 'ajeno';
+        div.textContent = `${m.username}: ${m.text} (${m.timestamp})`;   // textContent evita XSS
+        $('mensajes').appendChild(div);
+      };
+    }
+
+    $('enviar').onclick = () => {
+      const username = $('usuario').value.trim();
+      const text = $('texto').value.trim();
+      if (!username || !text) return alert('Nombre y mensaje son obligatorios');
+      ws.send(JSON.stringify({ username, text }));
+      $('texto').value = '';
+    };
+    conectar();
+  [[/script>
+</body>
+</html></script>
+<script type="text/plain" id="c-lab6-openssl">set OPENSSL_CONF=C:\Users\<usuario>\Downloads\OpenSSL-Win64\openssl.cnf
+echo %OPENSSL_CONF%
+
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+
+cd backend
+npm init -y
+npm install express ws jsonwebtoken
+node --watch index.js</script>
+<script type="text/plain" id="c-lab6-server">const WebSocket = require('ws');
+const https = require('https');
+const express = require('express');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const url = require('url');
+const app = express();
+const jwtSecret = "example-secret";
+
+// Servidor HTTPS con los certificados
+const server = https.createServer({
+  cert: fs.readFileSync('cert.pem'),
+  key: fs.readFileSync('key.pem')
+}, app);
+
+// WSS montado en la ruta /ws
+const wss = new WebSocket.Server({ server: server, path: '/ws' });
+var wsClients = [];
+
+wss.on('connection', (ws, req) => {
+  var token = url.parse(req.url, true).query.token;
+  var wsUsername = "";
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) {
+      ws.close();                                  // token inválido
+    } else {
+      wsClients[token] = ws;
+      wsUsername = decoded.username;
+    }
+  });
+
+  ws.on('message', (data) => {
+    for (const [token, client] of Object.entries(wsClients)) {
+      jwt.verify(token, jwtSecret, (err, decoded) => {
+        if (err) {
+          client.send("Error: Your token is no longer valid. Please reauthenticate.");
+          client.close();
+        } else {
+          client.send(wsUsername + ": " + data);
+        }
+      });
+    }
+  });
+});
+
+// Endpoint de autenticación: devuelve un JWT
+app.get('/auth', (req, res) => res.send(fetchUserToken(req)));
+
+const fetchUserToken = (req) => {
+  for (i = 0; i < userCredentials.length; i++) {
+    if (userCredentials[i].username == req.query.username
+        && userCredentials[i].password == req.query.password) {
+      return jwt.sign(
+        { "sub": userCredentials[i].userId, "username": req.query.username },
+        jwtSecret,
+        { expiresIn: 900 }                         // 15 minutos
+      );
+    }
+  }
+  return "Error: No matching user credentials found.";
+};
+
+server.listen(5000, () => console.log('WebSocket Server running on https://localhost:5000'));
+
+// Cliente: fetch("https://localhost:5000/auth?username=..&password=..")
+//          ws = new WebSocket("wss://localhost:5000/ws?token=" + jwtAuth);</script>
+<script type="text/plain" id="c-lab7-cmd">mkdir LabWebAv-Socket.IO
+cd LabWebAv-Socket.IO
+code .
+npm init -y
+npm install express socket.io
+node index.js</script>
+<script type="text/plain" id="c-lab7-server">const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+app.use(express.static('public'));
+
+io.on('connection', (socket) => {
+  socket.on('mensaje', ({ username, text }) => {
+    io.emit('mensaje', {                           // a TODOS, incluido el emisor
+      username,
+      text,
+      timestamp: new Date().toISOString()
+    });
+  });
+});
+
+server.listen(3000, () => console.log('http://localhost:3000'));</script>
+<script type="text/plain" id="c-lab7-client"><!DOCTYPE html>
+<html>
+<head><title>Chat Socket.IO</title></head>
+<body>
+  <h1>Chat Socket.IO</h1>
+  Usuario: <input id="username" value="Anónimo">
+  <div id="mensajes"></div>
+  <input id="text" placeholder="Escribe tu mensaje..." autocomplete="off">
+  <button id="enviar">Enviar</button>
+  <div id="estado"></div>
+
+  [[script src="/socket.io/socket.io.js">[[/script>
+  [[script>
+    const socket = io();
+    const estado = document.getElementById('estado');
+
+    socket.on('connect', () => { estado.textContent = 'Conectado'; estado.style.color = 'green'; });
+    socket.on('disconnect', () => { estado.textContent = 'Desconectado'; estado.style.color = 'red'; });
+
+    socket.on('mensaje', (m) => {
+      const div = document.createElement('div');
+      div.textContent = `${m.username}: ${m.text} (${new Date(m.timestamp).toLocaleTimeString()})`;
+      document.getElementById('mensajes').appendChild(div);
+    });
+
+    document.getElementById('enviar').onclick = () => {
+      const username = document.getElementById('username').value;
+      const input = document.getElementById('text');
+      socket.emit('mensaje', { username, text: input.value });
+      input.value = '';
+    };
+  [[/script>
+</body>
+</html></script>
+<script type="text/plain" id="c-pr-conn"><%
+' conn.asp: conexión reutilizable
+Function GetConnection()
+  Dim cn
+  Set cn = Server.CreateObject("ADODB.Connection")
+  cn.Open "Provider=MSOLEDBSQL;Data Source=localhost;Initial Catalog=BDD_PoliMusic;" & _
+          "User Id=usr_polimusic;Password=Politecnica1;Use Encryption for Data=Optional;"
+  Set GetConnection = cn
+End Function
+%></script>
+<script type="text/plain" id="c-pr-login"><%@ Language="VBScript" CodePage=65001 %>
+<!--#include file="conn.asp"-->
+<%
+Dim msg : msg = ""
+If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+  Dim cn, cmd, rs
+  Set cn = GetConnection()
+  Set cmd = Server.CreateObject("ADODB.Command")
+  Set cmd.ActiveConnection = cn
+  cmd.CommandText = "SELECT USERNAME, USER_TYPE FROM TBL_USER WHERE USERNAME = ? AND PASSWORD = ?"
+  ' 200 = adVarChar, 1 = adParamInput
+  cmd.Parameters.Append cmd.CreateParameter("u", 200, 1, 50, Request.Form("usuario"))
+  cmd.Parameters.Append cmd.CreateParameter("p", 200, 1, 100, Request.Form("clave"))
+  Set rs = cmd.Execute
+  If Not rs.EOF Then
+    Session("Username") = rs("USERNAME")
+    Session("UserType") = rs("USER_TYPE")
+    rs.Close : cn.Close
+    Response.Redirect "songs.asp"
+  End If
+  msg = "Usuario o contraseña incorrectos"
+  rs.Close : cn.Close
+End If
+%>
+<form method="post" action="login.asp">
+  <input name="usuario" placeholder="Usuario">
+  <input name="clave" type="password" placeholder="Contraseña">
+  <button type="submit">Ingresar</button>
+  <p style="color:red"><%= Server.HTMLEncode(msg) %></p>
+</form></script>
+<script type="text/plain" id="c-pr-songs"><%@ Language="VBScript" CodePage=65001 %>
+<!--#include file="conn.asp"-->
+<%
+If Session("Username") = "" Then Response.Redirect "login.asp"
+Dim cn, rs
+Set cn = GetConnection()
+Set rs = cn.Execute("SELECT ID_SONG, SONG_NAME, SONG_PATH, PLAYS FROM TBL_SONG")
+%>
+<h2>Welcome <%= Server.HTMLEncode(Session("Username")) %></h2>
+<a href="logout.asp">Logout</a>
+<h3>Song List</h3>
+<table>
+  <tr><th>ID</th><th>Song Name</th><th>Play</th><th>Reproductions</th></tr>
+<% Do While Not rs.EOF %>
+  <tr>
+    <td><%= rs("ID_SONG") %></td>
+    <td><%= Server.HTMLEncode(rs("SONG_NAME")) %></td>
+    <td><audio controls src="<%= Replace(rs("SONG_PATH"), "~/", "") %>"></audio></td>
+    <td><%= rs("PLAYS") %></td>
+  </tr>
+<%   rs.MoveNext
+   Loop
+   rs.Close : cn.Close %>
+</table></script>
+<script type="text/plain" id="c-pr-aspx"><%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Song.aspx.cs" Inherits="WebAppPoliMusicV2.Song" %>
+<!DOCTYPE html>
+<html>
+<head runat="server"><title>PoliMusic</title></head>
+<body>
+  <form id="formSong" runat="server">
+    <asp:Label ID="lblUserName" runat="server" />
+    <asp:HyperLink runat="server" NavigateUrl="~/Logout.aspx">Cerrar sesión</asp:HyperLink>
+    <asp:TextBox ID="txtSearch" runat="server" placeholder="Buscar..." />
+    <asp:Button ID="btnSearch" runat="server" Text="Buscar" OnClick="btnSearch_Click" />
+
+    <asp:GridView ID="gvSongs" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_SONG">
+      <Columns>
+        <asp:BoundField DataField="SONG_NAME" HeaderText="Canción" />
+        <asp:BoundField DataField="PLAYS" HeaderText="Reproducciones" />
+        <asp:TemplateField HeaderText="Reproducir">
+          <ItemTemplate>
+            <audio controls src='<%# ResolveUrl(Eval("SONG_PATH").ToString()) %>'></audio>
+          </ItemTemplate>
+        </asp:TemplateField>
+      </Columns>
+      <EmptyDataTemplate>No se encontraron canciones.</EmptyDataTemplate>
+    </asp:GridView>
+  </form>
+</body>
+</html></script>
+<script type="text/plain" id="c-pr-aspxcs">public partial class Song : System.Web.UI.Page
+{
+    string strConnString = ConfigurationManager
+        .ConnectionStrings["BDD_PoliMusicConnectionString"].ConnectionString;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Entities.User user = Session[Util.Constants.USER] as Entities.User;
+        if (user == null) { Response.Redirect("Login.aspx", true); return; }
+
+        if (!Page.IsPostBack)                       // solo la primera vez
+        {
+            lblUserName.Text = "Welcome " + Server.HtmlEncode(user.UserName);
+            LoadSongs(string.Empty);
+        }
+    }
+
+    private void LoadSongs(string filter)
+    {
+        DataTable dt = new BLL.Song(strConnString).Search(filter);   // Presentación → BLL
+        gvSongs.DataSource = dt;
+        gvSongs.DataBind();
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        LoadSongs(txtSearch.Text);
+    }
+}</script>
+
+<script>
+/* ---------- storage seguro ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem('awa-'+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem('awa-'+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---------- plan ---------- */
+const PLAN = [
+  {t:'12:15', h:'Preguntas del profe', d:'Las confirmadas por el profesor: comando docker, RHEL, bcp, ADO.NET, CLR, Entity Framework, ad hoc, WebSocket y sus preguntas hermanas.', p:'a', go:'profe', tags:['40 min']},
+  {t:'12:55', brk:true, h:'Almuerzo (45 min)'},
+  {t:'13:40', h:'Bloque 1 · ASP clásico (Tema 4 + Lab 2)', d:'7 objetos, VBScript, GET/POST, SSR vs CSR. Luego el Lab 2: conn.asp, ADODB.Command, Session, Server.HTMLEncode.', p:'a', go:'tema-4', tags:['50 min']},
+  {t:'14:30', brk:true, h:'Descanso 10 min'},
+  {t:'14:40', h:'Bloque 2 · Monolíticos y N-Tier (Tema 6 + Labs 3 y 4)', d:'10 preguntas oficiales. Monolito .NET 2.0 vs 4 proyectos N-Tier; Web.config (deny ?, allow *), IsPostBack, GridView.', p:'a', go:'tema-6', tags:['60 min']},
+  {t:'15:40', brk:true, h:'Descanso 10 min'},
+  {t:'15:50', h:'Bloque 3 · AJAX, polling y WebSocket (Temas 7, 8 + Labs 5 y 7)', d:'Del push imposible al chat con ws y Socket.IO. Broadcasting, readyState, io.emit, textContent y XSS.', p:'a', go:'tema-8', tags:['50 min']},
+  {t:'16:40', brk:true, h:'Descanso 10 min'},
+  {t:'16:50', h:'Bloque 4 · WSS, TLS y JWT (Tema 9 + Lab 6)', d:'cert.pem vs key.pem, OpenSSL rsa:4096, rutas /auth y /ws, jwt.sign con expiresIn 900, jwt.verify.', p:'a', go:'tema-9', tags:['50 min']},
+  {t:'17:40', h:'Bloque 5 · IIS, .NET, apps modernas, IA y Lab 1 (Temas 1, 2, 3, 5)', d:'Datos para memorizar: servicios de IIS, versiones, LTS, frameworks, VCS, gestores, benchmarks; conexiones de SSMS y cadenas de conexión.', p:'m', go:'tema-1', tags:['45 min']},
+  {t:'18:25', brk:true, h:'Cena y descanso largo (1 h)'},
+  {t:'19:25', h:'Parte práctica: escribir el chat de memoria', d:'Escribe en papel o en VS Code el chat WebSocket (servidor + cliente) sin mirar. Si sobra tiempo, el de Socket.IO o el login ASP.', p:'a', go:'practica', tags:['50 min']},
+  {t:'20:15', h:'Quiz completo', d:'Todas las preguntas. Luego “Solo falladas” y vuelve a leer ese tema.', p:'a', go:'quiz', tags:['40 min']},
+  {t:'20:55', h:'Flashcards y preguntas abiertas', d:'Siglas marcadas “Repasar” y preguntas abiertas en voz alta. A dormir temprano.', p:'m', go:'siglas', tags:['30 min']}
+];
+const planDone = store.get('plan', {});
+function renderPlan(){
+  const el = document.getElementById('sched'); el.innerHTML='';
+  PLAN.forEach((b,i)=>{
+    const row = document.createElement('div');
+    row.className = 'blk' + (b.brk?' brk':'') + (planDone[i]?' checked':'');
+    if(b.brk){
+      row.innerHTML = `<div class="time">${b.t}</div><div class="box"><div class="ds" style="color:var(--muted)">☕ ${b.h}</div></div>`;
+    } else {
+      const pr = {a:['p-a','Alta'],m:['p-m','Media'],b:['p-b','Baja']}[b.p];
+      row.innerHTML = `<div class="time">${b.t}</div><label class="box"><input type="checkbox" ${planDone[i]?'checked':''}><div><div class="tt">${b.h}</div><div class="ds">${b.d}</div><div class="tags"><span class="prio ${pr[0]}">Prioridad ${pr[1]}</span> ${b.tags.map(x=>`<span class="pill">${x}</span>`).join('')}</div><a class="btnlink" href="#${b.go}">Ir al material →</a></div></label>`;
+      row.querySelector('input').addEventListener('change', e=>{
+        planDone[i] = e.target.checked; store.set('plan', planDone);
+        row.classList.toggle('checked', e.target.checked); updateProgress();
+      });
+    }
+    el.appendChild(row);
+  });
+}
+function updateProgress(){
+  const tasks = PLAN.map((b,i)=>[b,i]).filter(([b])=>!b.brk);
+  const done = tasks.filter(([b,i])=>planDone[i]).length;
+  const pct = Math.round(done/tasks.length*100);
+  document.getElementById('pct').textContent = pct+'%';
+  document.getElementById('pbar').style.width = pct+'%';
+  // marcar temas visitados en el plan
+  const doneViews = new Set(tasks.filter(([b,i])=>planDone[i]).map(([b])=>b.go));
+  document.querySelectorAll('nav.side a').forEach(a=>a.classList.toggle('done', doneViews.has(a.dataset.v)));
+}
+
+/* ---------- código ---------- */
+function renderCode(){
+  document.querySelectorAll('.code').forEach(div=>{
+    const src = document.getElementById(div.dataset.id);
+    if(!src) return;
+    const box = document.createElement('div'); box.className='codebox';
+    box.innerHTML = `<div class="codehead"><span>${div.dataset.title}</span><div><button class="pr">Modo práctica</button><button class="cp">Copiar</button></div></div><pre><code class="language-${div.dataset.lang}"></code></pre>`;
+    const txt = src.textContent.replace(/^\n/,'').replace(/\[\[(\/?)script/g,'<$1script');
+    box.querySelector('code').textContent = txt;
+    const prb = box.querySelector('.pr');
+    prb.onclick = ()=>{ box.classList.toggle('hidden'); prb.textContent = box.classList.contains('hidden') ? 'Mostrar' : 'Modo práctica'; };
+    box.querySelector('.cp').onclick = async (e)=>{ try{ await navigator.clipboard.writeText(txt.trim()); e.target.textContent='Copiado'; setTimeout(()=>e.target.textContent='Copiar',1200);}catch(err){ e.target.textContent='No disponible'; } };
+    div.replaceWith(box);
+  });
+  if(window.hljs){ document.querySelectorAll('pre code').forEach(c=>{ try{ hljs.highlightElement(c); }catch(e){} }); }
+}
+
+/* ---------- siglas ---------- */
+const SIGLAS = [
+ ['IIS','Internet Information Services','Servidor web de Microsoft','Servidores'],
+ ['PWS','Personal Web Server','IIS en Windows 98','Servidores'],
+ ['FTP','File Transfer Protocol','Servicio incluido en IIS','Servidores'],
+ ['SMTP','Simple Mail Transfer Protocol','Correo de SALIDA','Servidores'],
+ ['IMAP','Internet Message Access Protocol','Correo de entrada','Servidores'],
+ ['POP3','Post Office Protocol v3','Correo de entrada','Servidores'],
+ ['NNTP','Network News Transfer Protocol','Servicio incluido en IIS','Servidores'],
+ ['DNS','Domain Name System','Traduce dominios a IP','Servidores'],
+ ['CGI','Common Gateway Interface','Permite PHP/Perl en IIS','Servidores'],
+ ['LTS','Long-Term Support','.NET 6, 8, 10 (pares)','.NET'],
+ ['DLL','Dynamic-Link Library','Componente reutilizable','.NET'],
+ ['ASP','Active Server Pages','ASP clásico, 1996, .asp','ASP'],
+ ['ADO','ActiveX Data Objects','Acceso a datos en ASP','ASP'],
+ ['CDONTS','Collaboration Data Objects for NT Server','Envío de correos en ASP','ASP'],
+ ['IUSR','Usuario anónimo de IIS','Se le dan permisos a la carpeta','ASP'],
+ ['SSR','Server-Side Rendering','HTML armado en el servidor','Arquitectura'],
+ ['CSR','Client-Side Rendering','HTML armado en el navegador','Arquitectura'],
+ ['SEO','Search Engine Optimization','Posicionamiento orgánico en buscadores','Arquitectura'],
+ ['SPA','Single Page Application','App de una sola página','Arquitectura'],
+ ['PWA','Progressive Web App','App web instalable','Arquitectura'],
+ ['JAMstack','JavaScript + APIs + Markup','Arquitectura moderna','Arquitectura'],
+ ['LAMP','Linux, Apache, MySQL, PHP','Stack legacy','Arquitectura'],
+ ['LAPP','Linux, Apache, PostgreSQL, PHP','Stack legacy','Arquitectura'],
+ ['BFF','Backend for Frontend','Arquitectura','Arquitectura'],
+ ['DDD','Domain-Driven Design','Arquitectura','Arquitectura'],
+ ['MVC','Model-View-Controller','ASP.NET MVC','Arquitectura'],
+ ['MVVM','Model-View-ViewModel','Arquitectura de Angular','Arquitectura'],
+ ['SOA','Service-Oriented Architecture','Capítulo 3','Arquitectura'],
+ ['BLL','Business Logic Layer','Capa de lógica de negocio','Arquitectura'],
+ ['DAL','Data Access Layer','Capa de acceso a datos','Arquitectura'],
+ ['UI','User Interface','UI nativa = controles del SO','Arquitectura'],
+ ['VCS','Version Control System','Control de versiones','Herramientas'],
+ ['CVCS','Centralized VCS','Ej.: SVN','Herramientas'],
+ ['DVCS','Distributed VCS','Ej.: Git, Mercurial','Herramientas'],
+ ['SVN','Subversion','VCS centralizado','Herramientas'],
+ ['CI/CD','Continuous Integration / Delivery','GitHub Actions, Pipelines','Herramientas'],
+ ['npm','Node Package Manager','Gestor de JavaScript','Herramientas'],
+ ['NuGet','“New Get”','Gestor de .NET; antes NuPack; .nupkg','Herramientas'],
+ ['TCP','Transmission Control Protocol','Base de HTTP y WebSocket','WebSockets'],
+ ['AJAX','Asynchronous JavaScript And XML','Peticiones sin recargar','WebSockets'],
+ ['CORS','Cross-Origin Resource Sharing','Access-Control-Allow-Origin','WebSockets'],
+ ['WS','WebSocket','ws:// · sin cifrar','WebSockets'],
+ ['WSS','WebSocket Secure','wss:// · con TLS','WebSockets'],
+ ['SSL','Secure Sockets Layer','Netscape, años 90','WebSockets'],
+ ['TLS','Transport Layer Security','Sucesor de SSL; 1.2 y 1.3','WebSockets'],
+ ['CA','Certificate Authority','Firma el certificado (cert.pem)','WebSockets'],
+ ['PEM','Privacy-Enhanced Mail (formato)','cert.pem, key.pem','WebSockets'],
+ ['JWT','JSON Web Token','RFC 7519 · header.payload.signature','WebSockets'],
+ ['RFC','Request for Comments','Documento de estándar','WebSockets'],
+ ['HS256','HMAC con SHA-256','Algoritmo de firma del JWT','WebSockets'],
+ ['IANA','Internet Assigned Numbers Authority','Registro de claims públicas','WebSockets'],
+ ['iat / exp','Issued At / Expiration','Claims de fecha del JWT','WebSockets'],
+ ['sub / iss / aud','Subject / Issuer / Audience','Claims registradas del JWT','WebSockets'],
+ ['RHEL','Red Hat Enterprise Linux','Linux empresarial de Red Hat (pregunta del profe)','Profe'],
+ ['SA','System Administrator','Usuario administrador de SQL Server','Profe'],
+ ['EULA','End User License Agreement','ACCEPT_EULA=Y en docker run','Profe'],
+ ['PID (MSSQL_PID)','Product ID','Edición de SQL Server: Express','Profe'],
+ ['-p 14333:1433','Puerto host : puerto contenedor','1433 = puerto por defecto de SQL Server','Profe'],
+ ['-d','Detached','Contenedor en segundo plano','Profe'],
+ ['bcp','Bulk Copy Program','Importar/exportar datos masivos de SQL Server','Profe'],
+ ['ADO.NET','ActiveX Data Objects para .NET','SqlConnection, SqlCommand, SqlDataReader…','Profe'],
+ ['CLR','Common Language Runtime','Ejecuta código administrado: JIT + garbage collector','Profe'],
+ ['CIL / MSIL','Common / Microsoft Intermediate Language','Lo que genera el compilador de C#','Profe'],
+ ['JIT','Just-In-Time','Compila CIL a código nativo al ejecutar','Profe'],
+ ['EF','Entity Framework','ORM de Microsoft (DbContext, DbSet, LINQ)','Profe'],
+ ['ORM','Object-Relational Mapper','Mapea tablas a clases','Profe'],
+ ['LINQ','Language Integrated Query','Consultas en C#','Profe'],
+ ['Ad hoc','Consulta escrita “para este caso”','SQL directo en el código sin ORM','Profe'],
+ ['SSMS','SQL Server Management Studio','Administrador gráfico de SQL Server','Labs'],
+ ['MCR','Microsoft Container Registry','mcr.microsoft.com/mssql/server','Labs'],
+ ['OLE DB','Object Linking and Embedding, Database','Provider=MSOLEDBSQL en ASP','Labs'],
+ ['CRUD','Create, Read, Update, Delete','Solo el admin en el Lab 2','Labs'],
+ ['XSS','Cross-Site Scripting','Se evita con textContent / HTMLEncode','Labs'],
+ ['SHA1','Secure Hash Algorithm 1','GeneratePasswordHash (hex)','Labs'],
+ ['PBKDF2','Password-Based Key Derivation Function 2','Salt de 16 bytes, 100.000 iteraciones','Labs'],
+ ['users="?"','Usuarios anónimos','<deny users="?"/> en Web.config','Labs'],
+ ['users="*"','Todos los usuarios','<allow users="*"/> para SignUp','Labs'],
+ ['SOTA','State of the Art','Lo más avanzado','IA'],
+ ['MoE','Mixture of Experts','Solo algunos expertos activos por token','IA'],
+ ['CoT','Chain of Thought','Razonamiento paso a paso','IA'],
+ ['LLM','Large Language Model','Modelo de lenguaje grande','IA'],
+ ['GPU / TPU','Graphics / Tensor Processing Unit','Hardware de IA','IA'],
+ ['MLP','Multilayer Perceptron','Bloque del transformer','IA'],
+ ['GPQA','Graduate-level Q&A (Diamond)','Benchmark nivel doctorado','IA'],
+ ['HLE','Humanity’s Last Exam','Benchmark del límite humano','IA']
+];
+let fcCat = 'Todas', fcDeck = [], fcIdx = 0;
+const fcState = store.get('fc', {});
+function fcBuild(){
+  fcDeck = SIGLAS.filter(s=>fcCat==='Todas'||s[3]===fcCat).filter(s=>fcState[s[0]]!=='ok');
+  if(!fcDeck.length) fcDeck = SIGLAS.filter(s=>fcCat==='Todas'||s[3]===fcCat);
+  fcDeck.sort(()=>Math.random()-.5); fcIdx=0; fcShow();
+}
+function fcShow(){
+  const fc = document.getElementById('fc'); fc.classList.remove('flip');
+  const s = fcDeck[fcIdx];
+  setTimeout(()=>{
+    document.getElementById('fc-s').textContent = s[0];
+    document.getElementById('fc-m').textContent = s[1];
+    document.getElementById('fc-c').textContent = s[2];
+  }, 150);
+  const pool = SIGLAS.filter(x=>fcCat==='Todas'||x[3]===fcCat);
+  const ok = pool.filter(x=>fcState[x[0]]==='ok').length;
+  document.getElementById('fc-stats').textContent = `Dominadas ${ok} de ${pool.length} · tarjeta ${fcIdx+1} de ${fcDeck.length}`;
+}
+function fcMark(v){
+  const s = fcDeck[fcIdx]; fcState[s[0]] = v; store.set('fc', fcState);
+  if(v==='no') fcDeck.push(s);
+  fcIdx++; if(fcIdx>=fcDeck.length){ fcBuild(); return; } fcShow();
+}
+function renderFc(){
+  const cats = ['Todas', ...new Set(SIGLAS.map(s=>s[3]))];
+  const f = document.getElementById('fc-filter');
+  cats.forEach(c=>{ const b=document.createElement('button'); b.className='chip'+(c===fcCat?' on':''); b.textContent=c; b.onclick=()=>{fcCat=c; f.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b)); fcBuild();}; f.appendChild(b); });
+  document.getElementById('fc').onclick = ()=>document.getElementById('fc').classList.toggle('flip');
+  document.getElementById('fc-ok').onclick = ()=>fcMark('ok');
+  document.getElementById('fc-no').onclick = ()=>fcMark('no');
+  document.getElementById('fc-reset').onclick = ()=>{ Object.keys(fcState).forEach(k=>delete fcState[k]); store.set('fc', fcState); fcBuild(); };
+  document.addEventListener('keydown', e=>{
+    if(currentView()!=='siglas') return;
+    if(e.code==='Space'){ e.preventDefault(); document.getElementById('fc').classList.toggle('flip'); }
+    if(e.key==='s'||e.key==='S') fcMark('ok');
+    if(e.key==='r'||e.key==='R') fcMark('no');
+  });
+  fcBuild();
+}
+
+/* ---------- quiz ---------- */
+const Q = [
+ ['Monolíticos (oficial)','¿Cuál es la característica definitoria del código fuente en una arquitectura monolítica?',['La UI siempre reside en el cliente sin conexión al servidor','Usa exclusivamente bases NoSQL distribuidas','Está dividido en múltiples microservicios','Está programado como un solo bloque o unidad indivisible'],3,'El monolito se programa como un solo bloque y se ejecuta como una unidad indivisible, aunque tenga capas.'],
+ ['Monolíticos (oficial)','¿En qué consiste la descomposición funcional (programación estructurada)?',['Dividir en clases responsables de reglas de negocio','Crear varias UI para un backend','Dividir un proceso en etapas o pasos bien definidos','Separar la BD del servidor de aplicaciones'],2,'La funcional divide el proceso en etapas. Dividir en clases es la descomposición orientada a objetos.'],
+ ['Monolíticos (oficial)','¿Qué es el Single Point of Failure en un monolito?',['Requiere muchos servidores para una instancia','Un error en una parte puede afectar y detener toda la aplicación','No puede usar bases SQL','El código es fácil de copiar'],1,'Todo corre en un solo proceso: si una parte falla, puede caer toda la app.'],
+ ['Monolíticos (oficial)','¿Qué implica el acoplamiento fuerte?',['Que los cables están bien conectados','Que la app es inmune a virus','Que la BD está en el mismo servidor','Que un cambio en una parte a menudo requiere cambios en otras'],3,'Es la característica definitoria: las partes dependen mucho unas de otras.'],
+ ['Monolíticos (oficial)','En 3 capas, ¿cuál es la responsabilidad principal de la BLL?',['Renderizar HTML y CSS','Ejecutar SQL desde la vista','Coordinar la aplicación, procesar comandos y hacer evaluaciones lógicas o cálculos','Almacenar archivos en disco'],2,'BLL = Business Logic Layer. El HTML es de Presentación y el SQL de la DAL.'],
+ ['Monolíticos (oficial)','¿Qué escalabilidad es la principal y más natural para un monolito?',['Vertical (scaling up)','Elástica por microservicios','Horizontal (scaling out)','De almacenamiento'],0,'Se agregan CPU y RAM a la misma máquina. La horizontal es posible pero compleja.'],
+ ['Monolíticos (oficial)','¿Qué define a un thin client (cliente ligero)?',['Es el navegador y depende del servidor para la mayoría de la lógica y almacenamiento','Es un ejecutable instalado que procesa todo','Solo funciona sin internet','Todo se ejecuta en el cliente'],0,'El thick client es el ejecutable instalado; el thin client es el navegador.'],
+ ['Monolíticos (oficial)','Ventaja de los monolitos para equipos pequeños o proyectos iniciales:',['Tolerancia a fallos','Un lenguaje distinto por función','Escalabilidad infinita sin costo','Despliegue y desarrollo inicial sencillo'],3,'Simplicidad inicial. Las otras opciones son ventajas de microservicios o falsas.'],
+ ['Monolíticos (oficial)','¿Qué significa Technology Lock-in?',['El servidor se bloquea con muchos usuarios','Es difícil introducir nuevas tecnologías en partes específicas sin afectar al conjunto','Contraseñas muy seguras','Hay que pagar licencias'],1,'Todo usa la misma tecnología, así que cambiar una parte afecta a todas.'],
+ ['Monolíticos (oficial)','En ASP.NET Web Forms, ¿qué extensión combina elementos visuales y código del servidor?',['.js','.asp','.html','.aspx'],3,'.asp es ASP clásico; .aspx es Web Forms.'],
+ ['Servidores','¿Qué servicios incluye IIS?',['FTP, SMTP, NNTP y HTTP/HTTPS','Solo HTTP','DNS y DHCP','SSH y Telnet'],0,'IIS es servidor web y además conjunto de servicios: FTP, SMTP, NNTP, HTTP/HTTPS.'],
+ ['Servidores','Un servidor dinámico es…',['Uno que cambia de IP','Un servidor estático más servidor de aplicaciones y base de datos','Un servidor sin disco','Un proxy inverso'],1,'Construye la página antes de enviarla gracias al software adicional.'],
+ ['ASP','Lenguaje de scripting predeterminado en ASP clásico:',['C#','JScript','VBScript','PHP'],2,'VBScript es el predeterminado; JScript también se puede usar.'],
+ ['ASP','¿Cómo se leen en ASP los datos de un formulario con method="post"?',['Request.QueryString()','Request.Form()','Response.Write()','Session()'],1,'POST → Request.Form · GET → Request.QueryString.'],
+ ['ASP','¿Qué objeto ASP guarda datos de UN usuario disponibles en todas las páginas?',['Application','Server','Session','Request'],2,'Application es para todos los usuarios; Session es por usuario.'],
+ ['ASP','¿Qué sentencia obliga a declarar todas las variables en VBScript?',['Dim','Option Explicit','use strict','Set'],1,'Option Explicit (equivale a "use strict" en JS). Dim es la que declara.'],
+ ['ASP','En VBScript, todas las variables son de tipo:',['String','Object','Variant','Integer'],2,'Variant, cuyo subtipo se decide en tiempo de ejecución.'],
+ ['ASP','¿Cuál es el atajo de Response.Write en ASP?',['<%# %>','<%= %>','<?= ?>','{{ }}'],1,'<%= "Hola" %> equivale a <% Response.Write("Hola") %>.'],
+ ['ASP','Ventaja de SSR frente a CSR:',['Más interactividad','Mejor SEO y carga inicial rápida','Navegación tipo SPA','Menos trabajo del servidor'],1,'El HTML llega listo: los buscadores lo leen y la página aparece rápido.'],
+ ['ASP','¿A qué usuario se le dan permisos para que IIS muestre la página?',['Administrador','IUSR','SYSTEM','Guest'],1,'IUSR es el usuario anónimo de IIS.'],
+ ['Modernas','¿Qué framework usa arquitectura MVVM con TypeScript?',['React','Vue','Angular','Svelte'],2,'Angular, de Google.'],
+ ['Modernas','Git es un VCS…',['Centralizado','Distribuido','Local únicamente','Propietario de Microsoft'],1,'Cada desarrollador tiene el repositorio completo. SVN es centralizado.'],
+ ['Modernas','¿Comando para agregar un paquete NuGet desde la CLI?',['npm install','nuget get','dotnet add package','pip install'],2,'dotnet add package <nombre>.'],
+ ['Modernas','Flutter usa el lenguaje…',['Kotlin','Dart','C#','Swift'],1,'Flutter = Dart. MAUI = C#.'],
+ ['.NET','¿Cuál es la última versión de .NET Framework (solo Windows)?',['4.8.1','5.0','10','4.6'],0,'4.8.1 (2022). Después todo es .NET (antes Core), que va por 10.'],
+ ['IA','¿Quién acuñó el término vibe coding?',['Sam Altman','Andrej Karpathy','Dario Amodei','Satya Nadella'],1,'Karpathy, que también creó MicroGPT.'],
+ ['IA','OpenRouter ayuda principalmente a…',['Entrenar modelos','Evitar el vendor lock-in con una sola API para muchos modelos','Alojar sitios web','Reemplazar Git'],1,'Es un API gateway: como el patrón Adapter aplicado a modelos.'],
+ ['AJAX','AJAX permite…',['Abrir conexiones bidireccionales persistentes','Hacer peticiones HTTP sin recargar toda la página','Cifrar datos','Compilar JavaScript'],1,'Lo bidireccional y persistente es WebSocket.'],
+ ['Polling','En long polling, el servidor…',['Responde siempre de inmediato','Retiene la petición hasta tener datos o vencer el tiempo','Abre un socket permanente','Envía datos sin que nadie pregunte'],1,'Responder de inmediato es short polling.'],
+ ['Polling','¿Qué enfoque usa una sola conexión persistente y bidireccional?',['Short polling','Long polling','AJAX','WebSocket'],3,'WebSocket: sin respuestas vacías y sobrecarga mínima tras el handshake.'],
+ ['Polling','¿Qué servicio usó históricamente long polling (Comet)?',['YouTube','Gmail','Wikipedia','Netflix'],1,'Gmail, para notificaciones casi instantáneas.'],
+ ['Seguridad','TLS es…',['El antecesor de SSL','El sucesor de SSL','Un formato de token','Un servidor web'],1,'SSL (Netscape) → TLS 1.0 … 1.3.'],
+ ['Seguridad','¿Qué archivo NUNCA debe compartirse?',['cert.pem','key.pem','index.html','package.json'],1,'key.pem es la clave privada. cert.pem es público.'],
+ ['Seguridad','Las tres partes de un JWT son:',['Header, Payload, Signature','Key, Value, Hash','User, Password, Token','Request, Response, Body'],0,'Separadas por puntos y codificadas en Base64URL.'],
+ ['Seguridad','Principal desventaja de JWT:',['Necesita sesión en el servidor','No puede revocarse antes de expirar','No funciona entre dominios','Siempre es muy grande'],1,'Por eso se recomiendan 15–30 min de expiración y refresh tokens.'],
+ ['Seguridad','¿Qué código cierra la conexión WebSocket cuando el token es inválido?',['404','500','1008','401'],2,'1008 = Policy Violation, usado en ws.close(1008, "Token inválido").'],
+ ['Profe','En "docker run ... -p 14333:1433", ¿qué significa 14333?',['El puerto dentro del contenedor','El puerto del host (tu PC) que se redirige al 1433 del contenedor','El ID del contenedor','La versión de SQL Server'],1,'Formato host:contenedor. 1433 es el puerto por defecto de SQL Server.'],
+ ['Profe','¿Qué hace la opción -d en docker run?',['Borra el contenedor al terminar','Ejecuta el contenedor en segundo plano (detached)','Descarga la imagen','Habilita la depuración'],1,'Detached: el contenedor queda corriendo y te devuelve la terminal.'],
+ ['Profe','En MSSQL_SA_PASSWORD, "SA" significa…',['Server Access','System Administrator','SQL Agent','Secure Authentication'],1,'SA es el usuario administrador de SQL Server.'],
+ ['Profe','RHEL es…',['Un motor de base de datos','Red Hat Enterprise Linux, una distribución Linux empresarial','Un framework de .NET','Un gestor de paquetes'],1,'Distribución de Red Hat basada en open source con soporte comercial. SQL Server corre en Linux.'],
+ ['Profe','La utilidad bcp de SQL Server sirve para…',['Hacer backups cifrados','Copiar datos de forma masiva entre una tabla y un archivo','Crear contenedores','Conectar desde ASP'],1,'bcp = Bulk Copy Program, con modos in, out y queryout.'],
+ ['Profe','¿Qué método de SqlCommand se usa para un INSERT, UPDATE o DELETE?',['ExecuteReader','ExecuteScalar','ExecuteNonQuery','Fill'],2,'Devuelve el número de filas afectadas. ExecuteScalar devuelve un valor y ExecuteReader filas.'],
+ ['Profe','El CLR es…',['El compilador de JavaScript','El entorno de ejecución de .NET que ejecuta código administrado','Una base de datos','Un ORM'],1,'Common Language Runtime: JIT, garbage collector, seguridad de tipos.'],
+ ['Profe','Entity Framework es…',['Un servidor web','Un ORM de Microsoft para .NET','Un framework de CSS','Un gestor de paquetes'],1,'Mapea tablas a clases; se consulta con LINQ usando DbContext y DbSet.'],
+ ['Profe','Una consulta "ad hoc" en el contexto de los labs es…',['Una consulta generada por un ORM','SQL escrito directamente en el código, sin ORM','Un procedimiento almacenado','Una vista materializada'],1,'Las clases DAL de los Labs 3 y 4 usan SQL ad hoc parametrizado.'],
+ ['Labs','¿Cuál es la tabla núcleo de BDD_PoliMusic?',['TBL_USER','TBL_ALBUM','TBL_SONG','TBL_PLAYLIST'],2,'Todas las demás (álbumes, playlists, artistas) se conectan a TBL_SONG.'],
+ ['Labs','En Web.config, <deny users="?"/> significa…',['Denegar a todos','Denegar a los usuarios anónimos (no autenticados)','Denegar a los administradores','Permitir a todos'],1,'? = anónimos; * = todos. SignUp usa <allow users="*"/>.'],
+ ['Labs','En el Lab 4 (N-Tier), ¿a qué proyecto NUNCA debe acceder la capa de presentación?',['EntityLayer','BLL','DAL','Ninguno'],2,'La presentación solo llama a la BLL; ir directo a la DAL rompe la arquitectura N-Layer.'],
+ ['Labs','¿Qué tipo de proyecto se usó para BLL, DAL y entidades en el Lab 4?',['Aplicación de consola','Class Library (.NET Framework)','Web API','WinForms'],1,'Bibliotecas de clases de .NET Framework 4.8, no la Class Library multiplataforma.'],
+ ['Labs','¿Para qué sirve if (!Page.IsPostBack) en Web Forms?',['Para detectar errores','Para ejecutar código solo en la primera carga de la página','Para cerrar sesión','Para conectar a la BD'],1,'En un PostBack (el formulario se envía a sí mismo) ese bloque no se repite.'],
+ ['Labs','En el chat con ws, ¿a qué clientes se reenvía el mensaje?',['Solo al emisor','A los que tienen readyState === WebSocket.OPEN','A los desconectados','Al primero de la lista'],1,'Broadcasting: se recorre el Set de clientes y se envía a los que tienen la conexión abierta.'],
+ ['Labs','En Socket.IO, io.emit("mensaje", …) envía el evento…',['Solo al emisor','A todos los clientes conectados, incluido el emisor','Solo al servidor','A todos menos el emisor'],1,'Es broadcasting. Para excluir al emisor se usaría socket.broadcast.emit.'],
+ ['Labs','¿Por qué el chat usa textContent en lugar de innerHTML?',['Es más rápido','Para evitar XSS: el HTML del usuario se muestra como texto','Porque innerHTML no existe','Para aplicar estilos'],1,'Una etiqueta script escrita por un usuario se muestra como texto y no se ejecuta.'],
+ ['Labs','En el Lab 6, ¿cuánto dura el JWT generado con expiresIn: 900?',['900 ms','15 minutos','15 horas','No expira'],1,'expiresIn se expresa en segundos: 900 s = 15 min.'],
+ ['Labs','¿Por qué el navegador muestra "la conexión no es privada" en https://localhost:5000?',['El puerto está cerrado','El certificado es autofirmado y no lo emitió una CA','Falta el JWT','El servidor usa HTTP'],1,'Se generó con OpenSSL para desarrollo; se continúa con "Avanzado".'],
+ ['Labs','¿Qué comando de PowerShell permite ejecutar los scripts de npm si están bloqueados?',['npm fix','Set-ExecutionPolicy RemoteSigned -Scope CurrentUser','chmod +x','Enable-Scripts'],1,'Es la política de ejecución de scripts de PowerShell.'],
+ ['Labs','¿Qué comando reinicia el servidor Node automáticamente al guardar cambios?',['node index.js','npm start','node --watch index.js (npm run dev)','npm install'],2,'El script "dev" del package.json usa node --watch.']
+];
+const qState = store.get('quiz', {});
+function renderQuiz(){
+  const list = document.getElementById('qlist'); list.innerHTML='';
+  Q.forEach((q,i)=>{
+    const d = document.createElement('div'); d.className='q'; d.dataset.i=i;
+    d.innerHTML = `<div class="qn"><span>Pregunta ${i+1}</span><span>${q[0]}</span></div><div class="qt"></div>${q[2].map((o,j)=>`<button class="opt" data-j="${j}"></button>`).join('')}<div class="expl"></div>`;
+    d.querySelector('.qt').textContent = q[1];
+    d.querySelectorAll('.opt').forEach((b,j)=>{ b.textContent = String.fromCharCode(65+j)+'. '+q[2][j]; b.onclick=()=>answer(i,j); });
+    d.querySelector('.expl').textContent = q[4];
+    list.appendChild(d);
+    if(qState[i]!==undefined) paint(i, qState[i]);
+  });
+  updScore();
+  document.getElementById('q-fail').onclick = ()=>document.querySelectorAll('.q').forEach(d=>{ const i=+d.dataset.i; d.classList.toggle('hide', !(qState[i]!==undefined && qState[i]!==Q[i][3])); });
+  document.getElementById('q-all').onclick = ()=>document.querySelectorAll('.q').forEach(d=>d.classList.remove('hide'));
+  document.getElementById('q-reset').onclick = ()=>{ Object.keys(qState).forEach(k=>delete qState[k]); store.set('quiz', qState); renderQuiz(); };
+}
+function answer(i,j){ if(qState[i]!==undefined) return; qState[i]=j; store.set('quiz', qState); paint(i,j); updScore(); }
+function paint(i,j){
+  const d = document.querySelector(`.q[data-i="${i}"]`); d.classList.add('answered');
+  d.querySelectorAll('.opt').forEach((b,k)=>{ if(k===Q[i][3]) b.classList.add('right'); else if(k===j) b.classList.add('wrong'); });
+  const ex = d.querySelector('.expl'); ex.style.background = j===Q[i][3] ? 'var(--ok-bg)' : 'var(--bad-bg)';
+  ex.textContent = (j===Q[i][3] ? '✓ Correcto. ' : '✗ Incorrecto. ') + Q[i][4];
+}
+function updScore(){
+  const ans = Object.keys(qState).length;
+  const ok = Object.entries(qState).filter(([i,j])=>Q[i][3]===j).length;
+  document.getElementById('qscore').textContent = `${ok} correctas de ${ans} respondidas · ${Q.length} en total`;
+}
+
+/* ---------- abiertas ---------- */
+const OPEN = [
+ ['¿Cómo visualizo index.asp en el navegador?','Publicando la carpeta en IIS como aplicación o directorio virtual y abriendo http://localhost/aspdemo/index.asp. Abrirlo con file:// no sirve: el código ASP tiene que ejecutarlo el servidor.'],
+ ['¿Por qué da error al abrir la página y cómo se soluciona?','IIS accede con el usuario anónimo IUSR, que no tiene permiso sobre la carpeta. Se le dan permisos de lectura.'],
+ ['¿Por qué se dice que ASP es SSR?','Porque el motor ASP ejecuta el script en el servidor y al navegador solo le llega el HTML ya construido.'],
+ ['¿Una app ASP clásico es backend, frontend o ambos?','Ambos: corre en el servidor (backend) y genera el HTML, CSS y JS (frontend). Por eso es una aplicación web monolítica.'],
+ ['Arquitecto de un banco: ¿qué framework estándar para frontend y backend, con soporte inmediato del fabricante?','No hay una única respuesta; lo que se evalúa es el soporte comercial. Defendible: backend ASP.NET Core (Microsoft, versiones LTS) o Spring Boot con soporte comercial; frontend Angular (Google, TypeScript, arquitectura completa). React y Vue dependen más de la comunidad.'],
+ ['Arquitecto de un banco: ¿app móvil nativa o multiplataforma?','Para un banco suele preferirse nativo (Swift/Kotlin): mejor seguridad (keystore, biometría, detección de root/jailbreak), rendimiento y soporte directo de Apple y Google. Multiplataforma (Flutter, MAUI) baja costos pero suma una capa más. Justifica con seguridad, soporte y costo.'],
+ ['¿Qué pondrías dentro de una DLL?','Lógica reutilizable: validar cédula, cálculos, formatear fechas, acceso a datos.'],
+ ['Menciona soluciones de seguridad para WebSockets.','Usar WSS (TLS); autenticar al conectar con JWT; validar la cabecera Origin; validar y sanear los mensajes; limitar la tasa de mensajes.'],
+ ['¿Cómo se evita el spoofing (suplantación) con WebSocket?','1) WSS con certificado válido, para que el cliente verifique al servidor. 2) JWT firmado verificado con jwt.verify en el handshake; si no es válido, ws.close(1008). 3) Revisar la cabecera Origin. 4) Tokens con expiración corta y claims mínimas.'],
+ ['¿Por qué long polling no es suficiente?','Una conexión por petición (handshake TCP), cabeceras HTTP verbosas, consultas vacías y comunicación en un solo sentido. Se necesita una conexión persistente y bidireccional: WebSocket.'],
+ ['Explica la diferencia entre cert.pem y key.pem.','cert.pem es público: tiene la clave pública, la identidad del servidor y la firma de la CA; los clientes lo usan para verificar al servidor. key.pem es la clave privada: descifra y firma, y nunca se comparte.'],
+ ['Explica cada parte del comando docker run de SQL Server.','-e define variables de entorno (ACCEPT_EULA=Y acepta la licencia, MSSQL_SA_PASSWORD es la clave del usuario SA, MSSQL_PID=Express la edición); -p 14333:1433 mapea el puerto del host al del contenedor (1433 es el de SQL Server); --name y --hostname dan nombre; -d lo ejecuta en segundo plano; al final va la imagen de mcr.microsoft.com.'],
+ ['¿Qué diferencia hay entre usar ADO.NET con SQL ad hoc y usar Entity Framework?','Con ADO.NET escribes el SQL tú (SqlConnection, SqlCommand, parámetros): más control y rendimiento, pero más código y riesgo de inyección si no parametrizas. Entity Framework es un ORM: mapea tablas a clases y consultas con LINQ; menos código, pero menos control sobre el SQL generado.'],
+ ['¿Qué diferencia hay entre el monolito del Lab 3 y el N-Tier del Lab 4?','En el Lab 3 las capas son solo carpetas dentro de un único proyecto (.NET 2.0). En el Lab 4 cada capa es un proyecto separado (Class Library .NET Framework 4.8) con referencias: Web → BLL → DAL, y todas usan EntityLayer. La presentación nunca toca la DAL.'],
+ ['¿Cómo protege el Lab 6 el chat?','Usa HTTPS/WSS con cert.pem y key.pem generados con OpenSSL; el usuario se autentica en /auth y recibe un JWT firmado (expira en 15 min); el WebSocket en /ws solo acepta la conexión si jwt.verify valida el token, y lo vuelve a verificar en cada mensaje.'],
+ ['¿Cuál es el objeto más pesado del universo? (broma de clase)','La respuesta que circula en internet es la carpeta node_modules.']
+];
+function renderOpen(){
+  const el = document.getElementById('open');
+  OPEN.forEach(([q,a],i)=>{
+    const d = document.createElement('div'); d.className='card';
+    d.innerHTML = `<b></b><div style="margin-top:8px"><button class="btn b-n">Ver respuesta modelo</button></div><p style="display:none;margin:10px 0 0;font-size:14.5px"></p>`;
+    d.querySelector('b').textContent = (i+1)+'. '+q;
+    d.querySelector('p').textContent = a;
+    d.querySelector('button').onclick = e=>{ const p=d.querySelector('p'); const on = p.style.display==='none'; p.style.display = on?'block':'none'; e.target.textContent = on?'Ocultar':'Ver respuesta modelo'; };
+    el.appendChild(d);
+  });
+}
+
+/* ---------- router ---------- */
+/* ---------- material ---------- */
+const FILES = {
+  clases: [
+    ['ISWD813-AppWebAvanzadas 1.2 0 ServidoresWeb-IIS.pdf','Tema 1 · Servidores web e IIS'],
+    ['ISWD813-AppWebAvanzadas 1.2 1 .NET Framework.pdf','Tema 2 · .NET Framework'],
+    ['ISWD813-AppWebAvanzadas 1.2 2 AgentesIA.pdf','Tema 3 · Agentes IA'],
+    ['ISWD813-AppWebAvanzadas 1.2 2 Aplicaciones ASP Clásico.pdf','Tema 4 · ASP clásico'],
+    ['ISWD813-AppWebAvanzadas 1.2 3 Aplicaciones Web Tradicionales y Modernas.pdf','Tema 5 · Apps tradicionales y modernas'],
+    ['ISWD813-AppWebAvanzadas 1.2 4 AppMonolíticas.pdf','Tema 6 · Monolíticos'],
+    ['ISWD813-AppWebAvanzadas 2.1 1 Introducción.pdf','Tema 7 · Introducción a WebSockets'],
+    ['ISWD813-AppWebAvanzadas 2.1 2 LongPolling.pdf','Tema 8 · Long polling'],
+    ['ISWD813-AppWebAvanzadas 2.1 4 WebSocketsSeguros.pdf','Tema 9 · WebSockets seguros']
+  ],
+  labs: [
+    ['LabWebAv01-CreaciónDeDiferentesTiposDeProyectos_ProañoIsaac.pdf','Lab 1 · Tipos de proyectos + SQL en Docker'],
+    ['LabWebAv02-ProyectoWebASP.pdf','Lab 2 · PoliMusic en ASP'],
+    ['LabWebAv03-WebAppMonolitico-IsaacProaño.pdf','Lab 3 · Monolito .NET 2.0'],
+    ['LabWebAv04-ProyectoWebApp_NTier-IsaacProano.pdf','Lab 4 · N-Tier .NET 4.8'],
+    ['LabWebAv05-WebSocket-IsaacProaño.pdf','Lab 5 · Chat WebSocket'],
+    ['LabWebAv06-WebSocketSeguroJW_ProañoIsaac.pdf','Lab 6 · WSS + JWT'],
+    ['LabWebAv07-SocketIO.docx','Lab 7 · Socket.IO (Word)']
+  ]
+};
+function renderFiles(){
+  [['clases','files-clases','material/clases/'],['labs','files-labs','material/laboratorios/']].forEach(([k,id,dir])=>{
+    const el = document.getElementById(id);
+    FILES[k].forEach(([f,label])=>{
+      const a = document.createElement('a');
+      a.href = dir + encodeURIComponent(f); a.target = '_blank'; a.rel = 'noopener';
+      a.innerHTML = '<span></span><small></small>';
+      a.querySelector('span').textContent = label;
+      a.querySelector('small').textContent = f.split('.').pop().toUpperCase();
+      el.appendChild(a);
+    });
+  });
+}
+
+const VIEWS = ['plan','profe','practica','lab-1','lab-2','lab-3','lab-4','lab-5','lab-6','lab-7','material','tema-1','tema-2','tema-3','tema-4','tema-5','tema-6','tema-7','tema-8','tema-9','siglas','quiz','abiertas'];
+function currentView(){ const h = location.hash.slice(1); return VIEWS.includes(h) ? h : 'plan'; }
+function route(){
+  const v = currentView();
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on', s.id==='v-'+v));
+  document.querySelectorAll('nav.side a').forEach(a=>a.classList.toggle('active', a.dataset.v===v));
+  window.scrollTo(0,0);
+  store.set('last', v);
+}
+window.addEventListener('hashchange', route);
+
+renderPlan(); renderCode(); renderFc(); renderQuiz(); renderOpen(); renderFiles(); updateProgress();
+if(!location.hash){ const last = store.get('last', null); if(last && VIEWS.includes(last) && last!=='plan'){ /* empieza en el plan */ } }
+route();
+</script>
+</body>
+</html>
